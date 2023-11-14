@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# Project Title - Name
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This app is designed to simplify this process for groups, making it effortless to track and divide expenses. When the time comes to settle up at the end of the trip or event, the app has already done the math, so you know exactly what you owe or are owed!
 
-In the project directory, you can run:
+### Problem
 
-### `npm start`
+On a summer trip I once took, we didn't bother keeping track of expenses or who owed what. So, when it came time to square things up, I found myself in the role of gathering meal receipts, Uber invoices, and all the other expenses people were owed for. To complicate matters, I had to navigate Excel for the very first time to crunch the numbers, which was quite a task. Managing three months' worth of holiday expenses turned out to be quite a demanding endeavour.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+I have realised that especially during big group trips or outings, splitting bills can often become a headache, with often one person shouldering the entire expense at once. It's especially complicated when there are multiple meals, activities, and various costs to consider. Keeping track of who paid what and how much each person owes or is owed can be a real challenge.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### User Profile
 
-### `npm test`
+Either: Multi profile/collaborative sign in so everyone in the group can use it.
+Or: Single user, one person does all the tracking.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Features
 
-### `npm run build`
+Within the app, the group can establish a personalised 'pocket,' where each member will set up and create their own profile. This feature provides the flexibility to input expenses, specifying who paid what and how the total should be divided among the group, either evenly or according to individual shares. Additionally, the app offers categorisation options, allowing users to label their expenditures, making it convenient to track expenses related to food, activities, drinks, shopping, and more.
+Additionally, the app will feature a section where members can securely store their preferred payment methods, such as bank details, PayPal email, VenMo numbers, and more. This ensures that when it's time for reimbursement, individuals can conveniently access the necessary information to make payments, eliminating the need for awkward requests or exchanges of payment details.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Implementation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Tech Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+HTML, CSS, SASS, React.js, Node.js, Express.js, Knex.js, MySQL
 
-### `npm run eject`
+### Sitemap
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Home page: Logo (Log in/ Sign up?)
+2. Pocket’s page: Create a pocket or click into an existing one?
+   ^^ Depends on how auth works for this app
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. ExpenseList Page: List of all previous expenses (top most recent)
+4. AddExpense Page: Create a new expense (redirects back to expense list page after)
+5. EditExpense -> edit expense on the list (modal)
+6. Delete Expense -> delete expense on the list (modal)
+7. ProfileList Page -> Active Profile at top with all details shown, rest in list form under it
+8. AddProfile Page -> Create new profile (redirects back to expense list page after)
+9. EditProfile -> edit profile on the list (modal)
+10. DeleteProfile -> delete profile on the list (modal)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Mockups
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<!-- Images here -->
 
-## Learn More
+### APIs
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+N/A
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Data
 
-### Code Splitting
+Creating my own database: Profiles & Expenses
+Profile can have many expenses
+Expenses can be correlated to many people?
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Endpoints
 
-### Analyzing the Bundle Size
+/GET all profiles
+/GET profile by id
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+/ADD profile
+/EDIT profile
+/DELETE profile
 
-### Making a Progressive Web App
+/GET all expenses
+/GET expense by id
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+/ADD expense
+/EDIT expense
+/DELETE expense
 
-### Advanced Configuration
+### Auth
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Roadmap
 
-### Deployment
+## Nice-to-haves
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Multiple pockets? Collaborative Feature? Sign In/Auth?
