@@ -1,4 +1,4 @@
-# Project Title - Name
+# Project Title - Pock/eT
 
 ## Overview
 
@@ -12,8 +12,7 @@ I have realised that especially during big group trips or outings, splitting bil
 
 ### User Profile
 
-Either: Multi profile/collaborative sign in so everyone in the group can use it.
-Or: Single user, one person does all the tracking.
+Single user, one profile.
 
 ### Features
 
@@ -28,17 +27,16 @@ HTML, CSS, SASS, React.js, Node.js, Express.js, Knex.js, MySQL
 
 ### Sitemap
 
-1. Home page: Logo (Log in/ Sign up?)
-2. Pocket’s page: Create a pocket or click into an existing one?
-   ^^ Depends on how auth works for this app
+1. Home Page: Logo + Log In
+2. Signup Page: Sign up an account/profile.
+3. Pocket’s page: Create a pocket or click into an existing one
+4. ExpenseList Page: List of all previous expenses of the pocket(top most recent)
+5. AddExpense Page: Create a new expense (redirects back to expense list page after)
+6. EditExpense Page: edit expense on the list
+7. ProfileList Page: Active Profile at top, rest of profiles under it
+8. EditProfile -> edit profile on the list (modal)
 
-3. ExpenseList Page: List of all previous expenses (top most recent)
-4. AddExpense Page: Create a new expense (redirects back to expense list page after)
-5. EditExpense -> edit expense on the list (modal)
-6. Delete Expense -> delete expense on the list (modal)
-7. ProfileList Page -> Active Profile at top with all details shown, rest in list form under it
-8. AddProfile Page -> Create new profile (redirects back to expense list page after)
-9. EditProfile -> edit profile on the list (modal)
+9. Delete Expense -> delete expense on the list (modal)
 10. DeleteProfile -> delete profile on the list (modal)
 
 ### Mockups
