@@ -2,7 +2,7 @@
 
 ## Overview
 
-This app is designed to simplify this process for groups, making it effortless to track and divide expenses. When the time comes to settle up at the end of the trip or event, the app has already done the math, so you know exactly what you owe or are owed!
+This app is designed to simplify this process for groups, making it effortless to track and divide expenses. When the time comes to settle up at the end of the trip, the app has already done the math, so you know exactly what you owe or are owed!
 
 ### Problem
 
@@ -29,15 +29,15 @@ HTML, CSS, SASS, React.js, Node.js, Express.js, Knex.js, MySQL
 
 1. Home Page: Logo + Log In
 2. Signup Page: Sign up an account/profile.
-3. Pocket’s page: Create a pocket or click into an existing one
-4. ExpenseList Page: List of all previous expenses of the pocket(top most recent)
+3. Pockets page: Create a pocket or click into an existing one
+4. Expenses Page: List of all previous expenses of the pocket(top most recent)
 5. AddExpense Page: Create a new expense (redirects back to expense list page after)
-6. EditExpense Page: edit expense on the list
-7. ProfileList Page: Active Profile at top, rest of profiles under it
-8. EditProfile -> edit profile on the list (modal)
-
-9. Delete Expense -> delete expense on the list (modal)
-10. DeleteProfile -> delete profile on the list (modal)
+6. EditExpense Page: Edit expense on the list
+7. Profiles Page: Active profile at top, rest of profiles under it
+8. EditProfile: Edit active profile on the list
+9. Delete Pocket -> delete pocket on the list (modal on Pockets Page)
+10. Delete Expense -> delete expense on the list (modal on Expenses Page)
+11. Delete Profile -> delete profile on the list (modal on Profiles Page)
 
 ### Mockups
 
@@ -50,10 +50,15 @@ N/A
 ### Data
 
 Creating my own database: Profiles & Expenses
-Profile can have many expenses
-Expenses can be correlated to many people?
 
 ### Endpoints
+
+/GET all pockets
+/GET pocket by id
+
+/ADD pocket
+/EDIT pocket
+/DELETE pocket
 
 /GET all profiles
 /GET profile by id
@@ -71,8 +76,42 @@ Expenses can be correlated to many people?
 
 ### Auth
 
+OAuth -> LogIn/SignUp functionality
+
 ## Roadmap
+
+Day One:
+Setup client & server repos
+Sketch design mockups of each page
+Server -> Build backend migration tables, seeds and seed data
+Client -> Create page structures & routes, find inital assets (fonts, icons)
+
+Day Two:
+Server -> Create all /get requests, create backend authentication functionality
+Client -> Create LogIn & Signup page with authentication functionality
+
+Day Three:
+Server -> create /add pocket & /edit pocket
+Client -> Create Pockets Page & Expense List page
+
+Day Four:
+Server -> create /add expenses & /edit expenses
+Client -> Create Add Expense & Edit Expense Page
+
+Day Five:
+Server -> create /edit profile & /delete profile
+Client -> Create Profile Page & Delete Profile Modal
+
+Day Six:
+Server -> create /delete pocket & /delete expenses
+Client -> Create Delete Pocket Modal & Delete Expense Modal
+
+Day Seven:
+Server -> Test backend functionality
+Client -> Link all pages together, test front end functionality, + Additional Assets
 
 ## Nice-to-haves
 
-Multiple pockets? Collaborative Feature? Sign In/Auth?
+- Split amounts individually
+- Category PieChart
+- Different Currency option
