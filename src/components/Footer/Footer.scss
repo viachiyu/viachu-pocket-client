@@ -4,7 +4,7 @@
 @use "../../styles/partials/variables" as *;
 
 .footer {
-  padding: 0.5rem 3rem 0.5rem 3rem;
+  padding: 0.4rem 3rem 0.5rem 3rem;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -14,7 +14,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0.3rem 0.75rem 0.1rem 0.75rem;
+    padding: 0.4rem 0.75rem 0.1rem 0.75rem;
     border-radius: 1rem;
     border: 1px solid #d4d3e8;
     box-shadow: 0px 1px 1px $pt-lilac;
@@ -26,8 +26,8 @@
     object-fit: contain;
 
     &--active {
-      background-color: #4579c2;
-      border-radius: 50%;
+      background-color: rgba(69, 121, 194, 0.5);
+      border-radius: 0.625rem;
     }
   }
 }

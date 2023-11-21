@@ -1,0 +1,23 @@
+@use "../../styles/partials/reset.scss";
+@use "../../styles/partials/typography.scss";
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.pockets {
+  &__wrapper {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  &__container {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
