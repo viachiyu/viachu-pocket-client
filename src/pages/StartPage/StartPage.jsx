@@ -12,7 +12,7 @@ function StartPage() {
         <div className="start__image">animation</div>
         <img className="start__logo" src={Logo} />
         <p className="start__slogan">
-          Track and divide expenses within a group with ease.
+          Track and divide group expenses with ease.
         </p>
       </section>
       <section className="start__bottom">
