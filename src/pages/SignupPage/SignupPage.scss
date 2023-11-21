@@ -13,7 +13,7 @@
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
   }
 
   &__title {
@@ -110,5 +110,20 @@
     padding-left: 3px;
     color: #43628a;
     font-weight: 400;
+  }
+
+  &__message {
+    font-size: 12px;
+    color: red;
+    padding-left: 0.5rem;
+    transform: translateY(-0.25rem);
+    letter-spacing: 0.5px;
+  }
+  &__success {
+    font-size: 12px;
+    color: forestgreen;
+    padding-left: 0.5rem;
+    transform: translateY(-0.25rem);
+    letter-spacing: 0.5px;
   }
 }
