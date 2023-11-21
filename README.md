@@ -88,11 +88,11 @@ Client -> Create page structures & routes, find inital assets (fonts, icons)
 
 Day Two:
 Server -> Create all /get requests, create backend authentication functionality
-Client -> Create LogIn & Signup page with authentication functionality
+Client -> Create LogIn & Signup page with authentication functionality, create header
 
 Day Three:
 Server -> create /add pocket & /edit pocket
-Client -> Create Pockets Page & Expense List page
+Client -> Create Pockets Page & Expense List page, create nav footer
 
 Day Four:
 Server -> create /add expenses & /edit expenses
