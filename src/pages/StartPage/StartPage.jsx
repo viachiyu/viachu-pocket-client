@@ -28,7 +28,7 @@ function StartPage() {
                 type="text"
                 name="email"
                 label="Email"
-                placeholder="enter email here"
+                placeholder="enter email"
               />
             </div>
             <div className="login__field">
@@ -38,7 +38,7 @@ function StartPage() {
                 type="password"
                 name="password"
                 label="Password"
-                placeholder="enter password here"
+                placeholder="enter password"
               />
             </div>
           </div>
