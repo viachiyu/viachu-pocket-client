@@ -1,0 +1,125 @@
+@use "../../styles/partials/reset.scss";
+@use "../../styles/partials/typography.scss";
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.start {
+  background-color: $background-cream;
+  height: 100vh;
+  padding: 1rem;
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    height: 25rem;
+    padding-top: 16.5rem;
+  }
+
+  &__image {
+    align-self: center;
+  }
+
+  &__logo {
+    align-self: center;
+    margin-top: 1rem;
+    width: 13rem;
+  }
+  &__slogan {
+    margin-top: 0.75rem;
+    align-self: center;
+    font-size: 12px;
+  }
+
+  &__bottom {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__signup {
+    margin-top: 0.75rem;
+    font-size: 12px;
+    display: flex;
+    align-self: center;
+  }
+
+  &__link {
+    padding-left: 3px;
+    color: #43628a;
+    font-weight: 400;
+  }
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    width: 21rem;
+    margin: 0 auto;
+  }
+
+  &__icon {
+    position: absolute;
+    left: 19px;
+    top: 2px;
+  }
+
+  &__input {
+    border: none;
+    border-bottom: 2px solid #d1d1d4;
+    background: none;
+    padding: 8px;
+    padding-left: 30px;
+    width: 88%;
+    transition: 0.2s;
+    align-self: center;
+    margin-bottom: 0.75rem;
+
+    &:active,
+    &:focus,
+    &:hover {
+      outline: none;
+      border-bottom-color: #4579c2;
+    }
+  }
+
+  &__button {
+    background: #fff;
+    font-size: 14px;
+    padding: 0.3rem 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid #d4d3e8;
+    display: flex;
+    align-self: center;
+    width: 19rem;
+    box-shadow: 0px 1px 1px #5c5696;
+    transition: 0.2s;
+    align-items: center;
+    margin-top: 0.25rem;
+
+    &:active,
+    &:focus,
+    &:hover {
+      border-width: 2px;
+      border-color: #4579c2;
+      outline: none;
+    }
+  }
+
+  &__text {
+    font-size: 13px;
+    color: #43628a;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding-left: 0.25rem;
+  }
+
+  &__arrow {
+    margin-left: auto;
+  }
+}
