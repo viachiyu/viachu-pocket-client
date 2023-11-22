@@ -3,11 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import StartPage from "./pages/StartPage/StartPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import MainPage from "./pages/MainPage/MainPage";
-import ExpensesPage from "./components/ExpensesPage/ExpensesPage";
-// import AddExpensePage from "./pages/AddExpensePage/AddExpensePage";
-// import EditExpensePage from "./components/EditExpensePage/EditExpensePage";
-// import ProfilesPage from "./pages/ProfilesPage/ProfilesPage";
-// import EditProfilePage from "./components/EditProfilePage/EditProfilePage";
 
 function App() {
   return (
@@ -18,19 +13,16 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/pockets" element={<MainPage />} />
           <Route path="/pockets/:pocketsId/expenses" element={<MainPage />} />
-          {/* <Route
+          <Route
             path="/pockets/:pocketsId/expenses/add"
-            element={<AddExpensePage />}
+            element={<MainPage />}
           />
           <Route
             path="/pockets/:pocketsId/expenses/:expenseId/edit"
-            element={<EditExpensePage />}
+            element={<MainPage />}
           />
-          <Route
-            path="/pockets/:pocketsId/profiles"
-            element={<ProfilesPage />}
-          />
-          <Route path="/profile/edit" element={<EditProfilePage />} /> */}
+          <Route path="/pockets/:pocketsId/profiles" element={<MainPage />} />
+          <Route path="/profile/edit" element={<MainPage />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -5,7 +5,7 @@ import expensesIcon from "../../assets/icons/menu_icon.svg";
 import addIcon from "../../assets/icons/add_icon.svg";
 import profilesIcon from "../../assets/icons/profiles_icon.svg";
 
-function Footer() {
+function Footer({ pocketId, onPocketClick }) {
   const matchPockets = useMatch("/pockets/");
   const matchExpenses = useMatch("/pockets/:pocketsId/expenses");
   const matchAdd = useMatch("/pockets/:pocketsId/expenses/add");
@@ -26,7 +26,7 @@ function Footer() {
       </div>
       {pocketClicked && (
         <div className="footer__wrapper footer__wrapper--nav">
-          <Link to="/pockets/:pocketsId/expenses">
+          <Link to={`/pockets/${pocketId}/expenses`}>
             <img
               className={`footer__icon ${
                 matchExpenses ? "footer__icon--active" : ""
@@ -35,7 +35,7 @@ function Footer() {
               alt="Expenses"
             />
           </Link>
-          <Link to="/pockets/:pocketsId/expenses/add">
+          <Link to={`/pockets/${pocketId}/expenses/add`}>
             <img
               className={`footer__icon ${
                 matchAdd ? "footer__icon--active" : ""
@@ -44,7 +44,7 @@ function Footer() {
               alt="Add"
             />
           </Link>
-          <Link to="/pockets/:pocketsId/profiles">
+          <Link to={`/pockets/${pocketId}/profiles`}>
             <img
               className={`footer__icon ${
                 matchProfiles ? "footer__icon--active" : ""

@@ -1,9 +1,11 @@
 import "./ExpensesPage.scss";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 
-function ExpensesPage() {
-  return <main className="expenses"></main>;
+function ExpensesPage({ pocketId }) {
+  return (
+    <main className="expenses">
+      <h1> expenses list for {pocketId}</h1>
+    </main>
+  );
 }
 
 export default ExpensesPage;
