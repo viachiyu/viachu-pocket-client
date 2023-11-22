@@ -7,9 +7,13 @@ function Header() {
   return (
     <header className="header">
       <div className="header__wrapper">
-        <Link to="/">
-          <img className="header__icon" src={icon} />
-        </Link>
+        <div className="header__left">
+          <Link to="/">
+            <img className="header__icon" src={icon} />
+          </Link>
+          {/* <p className="header__name">{pocketName}</p> */}
+        </div>
+
         <Link to="/">
           <img className="header__logo" src={logo} />
         </Link>

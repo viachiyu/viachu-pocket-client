@@ -13,8 +13,12 @@ function Pocket({ pocketsList }) {
   return (
     <article className="pocket">
       {pocketsList.map((pocket) => (
-        <Link to={`/pockets/${pocket.id}/expenses`} className="pocket__link">
-          <div className="pocket__card" key={pocket.id}>
+        <Link
+          to={`/pockets/${pocket.id}/expenses`}
+          className="pocket__link"
+          key={pocket.id}
+        >
+          <div className="pocket__card">
             <img className="pocket__image" src={Black} />
             <div className="pocket__text">
               <h2 className="pocket__name">{pocket.name}</h2>
