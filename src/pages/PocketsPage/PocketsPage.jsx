@@ -10,18 +10,25 @@ function PocketsPage() {
 
   useEffect(() => {
     const fetchPockets = async () => {
+      const token = sessionStorage.getItem("token");
+
       try {
         const { data } = await axios.get(
-          process.env.REACT_APP_BASE_URL + "/pockets"
+          process.env.REACT_APP_BASE_URL + "/pockets",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
         );
-        console.log(data);
         setPocketsList(data);
       } catch (error) {
         console.error(error);
       }
     };
     fetchPockets();
-  });
+  }, []);
+
   if (pocketsList === null) {
     return <p>Loading...</p>;
   }
@@ -33,8 +40,7 @@ function PocketsPage() {
         <div className="pockets__wrapper">
           <h1 className="pockets__title">Your Pockets</h1>
           <section className="pockets__container">
-            <Pocket pocketList={pocketsList} />
-            <Pocket />
+            <Pocket pocketsList={pocketsList} />
           </section>
         </div>
       </main>
