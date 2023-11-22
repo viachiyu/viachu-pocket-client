@@ -1,11 +1,12 @@
-import "./PocketsPage.scss";
+import "./MainPage.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import Pocket from "../../components/Pocket/Pocket";
+import PocketsPage from "../../components/PocketsPage/PocketsPage";
+import ExpensesPage from "../../components/ExpensesPage/ExpensesPage";
 
-function PocketsPage() {
+function MainPage() {
   const [pocketsList, setPocketsList] = useState(null);
 
   useEffect(() => {
@@ -28,7 +29,6 @@ function PocketsPage() {
     };
     fetchPockets();
   }, []);
-
   if (pocketsList === null) {
     return <p>Loading...</p>;
   }
@@ -36,17 +36,11 @@ function PocketsPage() {
   return (
     <>
       <Header />
-      <main className="pockets">
-        <div className="pockets__wrapper">
-          <h1 className="pockets__title">Your Pockets</h1>
-          <section className="pockets__container">
-            <Pocket pocketsList={pocketsList} />
-          </section>
-        </div>
-      </main>
+      <PocketsPage pocketsList={pocketsList} />
+      <ExpensesPage />
       <Footer />
     </>
   );
 }
 
-export default PocketsPage;
+export default MainPage;

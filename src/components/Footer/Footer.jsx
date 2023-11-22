@@ -13,14 +13,16 @@ function Footer() {
 
   return (
     <footer className="footer">
-      <div className="footer__wrapper">
-        <Link to="/pockets">
+      <div className="footer__wrapper footer__wrapper--pocket">
+        <Link to="/pockets" className="footer__link">
           <img
             className={`footer__icon
              ${matchPockets ? "footer__icon--active" : ""}`}
             src={pocketIcon}
           />
         </Link>
+      </div>
+      <div className="footer__wrapper footer__wrapper--nav">
         <Link to="/pockets/:pocketsId/expenses">
           <img
             className={`footer__icon

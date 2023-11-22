@@ -4,25 +4,36 @@
 @use "../../styles/partials/variables" as *;
 
 .footer {
-  padding: 0.4rem 3rem 0.5rem 3rem;
+  padding: 0.4rem 2rem 0.5rem 2rem;
   position: fixed;
   bottom: 0;
   width: 100%;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
 
   &__wrapper {
-    width: 100%;
     display: flex;
-    justify-content: space-between;
-    padding: 0.4rem 0.75rem 0.1rem 0.75rem;
+    justify-content: center;
+    align-items: center;
     border-radius: 1rem;
     border: 1px solid #d4d3e8;
     box-shadow: 0px 1px 1px $pt-lilac;
     background-color: #f5f8fd;
+    padding-top: 0.25rem;
+
+    &--pocket {
+      width: 3.5rem;
+    }
+    &--nav {
+      width: 12rem;
+      justify-content: space-around;
+    }
   }
+
   &__icon {
     width: 2.25rem;
-    height: 2.3rem;
+
     object-fit: contain;
 
     &--active {
