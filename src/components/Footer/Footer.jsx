@@ -11,6 +11,8 @@ function Footer() {
   const matchAdd = useMatch("/pockets/:pocketsId/expenses/add");
   const matchProfiles = useMatch("/pockets/:pocketsId/profiles");
 
+  const pocketClicked = matchExpenses || matchAdd || matchProfiles;
+
   return (
     <footer className="footer">
       <div className="footer__wrapper footer__wrapper--pocket">
@@ -22,29 +24,37 @@ function Footer() {
           />
         </Link>
       </div>
-      <div className="footer__wrapper footer__wrapper--nav">
-        <Link to="/pockets/:pocketsId/expenses">
-          <img
-            className={`footer__icon
-             ${matchExpenses ? "footer__icon--active" : ""}`}
-            src={expensesIcon}
-          />
-        </Link>
-        <Link to="/pockets/:pocketsId/expenses/add">
-          <img
-            className={`footer__icon
-             ${matchAdd ? "footer__icon--active" : ""}`}
-            src={addIcon}
-          />
-        </Link>
-        <Link to="/pockets/:pocketsId/profiles">
-          <img
-            className={`footer__icon
-             ${matchProfiles ? "footer__icon--active" : ""}`}
-            src={profilesIcon}
-          />
-        </Link>
-      </div>
+      {pocketClicked && (
+        <div className="footer__wrapper footer__wrapper--nav">
+          <Link to="/pockets/:pocketsId/expenses">
+            <img
+              className={`footer__icon ${
+                matchExpenses ? "footer__icon--active" : ""
+              }`}
+              src={expensesIcon}
+              alt="Expenses"
+            />
+          </Link>
+          <Link to="/pockets/:pocketsId/expenses/add">
+            <img
+              className={`footer__icon ${
+                matchAdd ? "footer__icon--active" : ""
+              }`}
+              src={addIcon}
+              alt="Add"
+            />
+          </Link>
+          <Link to="/pockets/:pocketsId/profiles">
+            <img
+              className={`footer__icon ${
+                matchProfiles ? "footer__icon--active" : ""
+              }`}
+              src={profilesIcon}
+              alt="Profiles"
+            />
+          </Link>
+        </div>
+      )}
     </footer>
   );
 }

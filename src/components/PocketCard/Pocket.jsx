@@ -8,7 +8,7 @@ import Blue from "../../assets/pockets/pocket__blue.svg";
 import Purple from "../../assets/pockets/pocket__purple.svg";
 import Pink from "../../assets/pockets/pocket__pink.svg";
 
-function Pocket({ pocketsList }) {
+function Pocket({ pocketsList, onPocketClick }) {
   //   const pocketIcons = [Green, Orange, Blue, Purple, Pink, Red];
   return (
     <article className="pocket">
@@ -17,6 +17,7 @@ function Pocket({ pocketsList }) {
           to={`/pockets/${pocket.id}/expenses`}
           className="pocket__link"
           key={pocket.id}
+          onClick={() => onPocketClick(pocket.id)}
         >
           <div className="pocket__card">
             <img className="pocket__image" src={Black} />

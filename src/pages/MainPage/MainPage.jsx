@@ -8,6 +8,12 @@ import ExpensesPage from "../../components/ExpensesPage/ExpensesPage";
 
 function MainPage() {
   const [pocketsList, setPocketsList] = useState(null);
+  const [selectedPocket, setSelectedPocket] = useState(null);
+
+  const handlePocketClick = (pocketId) => {
+    // Handle pocket click and update the selected pocket state
+    setSelectedPocket(pocketId);
+  };
 
   useEffect(() => {
     const fetchPockets = async () => {
@@ -36,8 +42,11 @@ function MainPage() {
   return (
     <>
       <Header />
-      <PocketsPage pocketsList={pocketsList} />
-      <ExpensesPage />
+      <PocketsPage
+        pocketsList={pocketsList}
+        onPocketClick={handlePocketClick}
+      />
+      {selectedPocket !== null && <ExpensesPage pocketId={selectedPocket} />}
       <Footer />
     </>
   );

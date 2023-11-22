@@ -2,7 +2,7 @@ import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import StartPage from "./pages/StartPage/StartPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
-import MainPage from "./pages/MainPage/PocketsPage";
+import MainPage from "./pages/MainPage/MainPage";
 import ExpensesPage from "./components/ExpensesPage/ExpensesPage";
 // import AddExpensePage from "./pages/AddExpensePage/AddExpensePage";
 // import EditExpensePage from "./components/EditExpensePage/EditExpensePage";
