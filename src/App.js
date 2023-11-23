@@ -18,6 +18,7 @@ function App() {
           <Route path="/" element={<StartPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/pockets" element={<PocketsPage />} />
+
           <Route path="pockets/:pocketsId" element={<ShellPage />}>
             <Route path="expenses" element={<ExpensesPage />} />
             <Route path="expenses/add" element={<AddExpensePage />} />

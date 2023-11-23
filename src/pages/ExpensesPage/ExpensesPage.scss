@@ -5,10 +5,13 @@
 
 .expenses {
   padding: 1rem;
+  background-color: $background-cream;
+
   &__wrapper {
     border: 1px solid $border;
     border-radius: 5px;
     background-color: white;
+    margin-bottom: 5rem;
   }
   &__title {
     font-family: "Chakra Petch";
