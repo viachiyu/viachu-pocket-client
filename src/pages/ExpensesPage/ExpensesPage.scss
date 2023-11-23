@@ -1,0 +1,19 @@
+@use "../../styles/partials/reset.scss";
+@use "../../styles/partials/typography.scss";
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.expenses {
+  padding: 1rem;
+  &__wrapper {
+    border: 1px solid $border;
+    border-radius: 5px;
+    background-color: white;
+  }
+  &__title {
+    font-family: "Chakra Petch";
+
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+}

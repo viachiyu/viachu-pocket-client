@@ -8,7 +8,7 @@ import Blue from "../../assets/pockets/pocket__blue.svg";
 import Purple from "../../assets/pockets/pocket__purple.svg";
 import Pink from "../../assets/pockets/pocket__pink.svg";
 
-function Pocket({ pocketsList, onPocketClick }) {
+function Pocket({ pocketsList }) {
   //   const pocketIcons = [Green, Orange, Blue, Purple, Pink, Red];
   return (
     <article className="pocket">
@@ -17,14 +17,14 @@ function Pocket({ pocketsList, onPocketClick }) {
           to={`/pockets/${pocket.id}/expenses`}
           className="pocket__link"
           key={pocket.id}
-          onClick={() => onPocketClick(pocket.id)}
         >
           <div className="pocket__card">
-            <img className="pocket__image" src={Black} />
-            <div className="pocket__text">
-              <h2 className="pocket__name">{pocket.name}</h2>
-              <h3 className="pocket__label">Notes:</h3>
-              <p className="pocket__notes">{pocket.notes}</p>
+            <div className="pocket__wrapper">
+              <img className="pocket__image" src={Black} />
+              <div className="pocket__text">
+                <h2 className="pocket__name">{pocket.name}</h2>
+                <p className="pocket__notes">{pocket.notes}</p>
+              </div>
             </div>
           </div>
         </Link>

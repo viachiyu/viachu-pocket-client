@@ -1,0 +1,19 @@
+@use "../../styles/partials/reset.scss";
+@use "../../styles/partials/typography.scss";
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.pockets {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    padding: 1rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    font-weight: 500;
+    font-family: "Chakra Petch";
+  }
+}
