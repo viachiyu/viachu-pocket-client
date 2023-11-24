@@ -7,7 +7,6 @@ import profilesIcon from "../../assets/icons/profiles_icon.svg";
 
 function Footer() {
   const { pocketsId } = useParams;
-  console.log(pocketsId);
 
   const matchPockets = useMatch("/pockets/");
   const matchExpenses = useMatch("/pockets/:pocketsId/expenses");
@@ -29,7 +28,7 @@ function Footer() {
       </div>
       {pocketClicked && (
         <div className="footer__wrapper footer__wrapper--nav">
-          <Link to={`/pockets/${pocketsId}/expenses`}>
+          <Link to={`/pockets/${pocketsId}/expenses`} className="footer__link">
             <img
               className={`footer__icon ${
                 matchExpenses ? "footer__icon--active" : ""
@@ -38,7 +37,10 @@ function Footer() {
               alt="Expenses"
             />
           </Link>
-          <Link to={`/pockets/${pocketsId}/expenses/add`}>
+          <Link
+            to={`/pockets/${pocketsId}/expenses/add`}
+            className="footer__link"
+          >
             <img
               className={`footer__icon ${
                 matchAdd ? "footer__icon--active" : ""
@@ -47,7 +49,7 @@ function Footer() {
               alt="Add"
             />
           </Link>
-          <Link to={`/pockets/${pocketsId}/profiles`}>
+          <Link to={`/pockets/${pocketsId}/profiles`} className="footer__link">
             <img
               className={`footer__icon ${
                 matchProfiles ? "footer__icon--active" : ""

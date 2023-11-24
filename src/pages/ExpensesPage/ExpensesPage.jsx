@@ -1,8 +1,8 @@
 import "./ExpensesPage.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ExpenseCard from "../../components/ExpenseCard/ExpenseCard";
 import { useParams } from "react-router-dom";
+import ExpenseCard from "../../components/ExpenseCard/ExpenseCard";
 
 function ExpensesPage() {
   const [expensesList, setExpensesList] = useState([]);
@@ -40,7 +40,7 @@ function ExpensesPage() {
     <>
       <main className="expenses">
         <div className="expenses__wrapper">
-          <h1 className="expenses__title">Your Group Expenses</h1>
+          <h1 className="expenses__title">Group Expenses</h1>
           <ExpenseCard expensesList={expensesList} />
         </div>
       </main>

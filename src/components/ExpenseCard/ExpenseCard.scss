@@ -7,13 +7,13 @@
   border-top: 1px dotted $border;
 
   &__open {
-    padding: 1rem 1.5rem 0.75rem 1.5rem;
+    padding: 1rem 1.5rem 0.25rem 1.5rem;
     display: flex;
     justify-content: space-between;
   }
 
   &__total {
-    font-size: 2rem;
+    font-size: 1.85rem;
     color: #83a1cd;
     padding-bottom: 0.25rem;
   }
@@ -44,7 +44,7 @@
   }
 
   &__down-icon.rotated {
-    transform: rotate(180deg);
+    transform: rotate(-180deg);
   }
 
   &__toggle {

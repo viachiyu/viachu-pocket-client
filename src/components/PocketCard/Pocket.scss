@@ -10,10 +10,11 @@
   }
   &__card {
     background-color: rgb(255, 243, 213);
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 1px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     width: 100%;
     padding: 0.5rem 1rem 0.5rem 1rem;
-    margin-bottom: 0.1rem;
+    margin-bottom: 0.2rem;
     height: 90px;
   }
 
