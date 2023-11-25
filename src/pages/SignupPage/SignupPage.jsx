@@ -99,7 +99,7 @@ function SignupPage() {
 
           <p className="signup__login">
             Have an account?
-            <Link to="/" className="signup__link">
+            <Link to="/login" className="signup__link">
               Log In
             </Link>
           </p>

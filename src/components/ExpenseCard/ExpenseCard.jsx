@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import chevronDown from "../../assets/icons/chevron_down.svg";
+import editIcon from "../../assets/icons/edit_icon.svg";
+import deleteIcon from "../../assets/icons/delete_icon.svg";
 
 function ExpenseCard({ expensesList }) {
   const [collapsedStates, setCollapsedStates] = useState({});
@@ -78,25 +80,34 @@ function ExpenseCard({ expensesList }) {
               </button>
             </div>
           </div>
+
           {!collapsedStates[expense.id] && (
             <div className="expense__toggle">
               <p className="expense__paid">
                 Who Paid:{" "}
                 <span className="expense__bold">{expense.profile_name}</span>
               </p>
-              {expenseProfileList
-                .filter((item) => item.expense_id === expense.id)
-                .filter((item) => item.profile_name !== expense.profile_name)
-                .map((item) => (
-                  <div className="expense__container">
-                    <p className="expense__pay">
-                      {item.profile_name} /{" "}
-                      <span className="expense__single">
-                        ${item.single_expense}
-                      </span>
-                    </p>
-                  </div>
-                ))}
+              <div className="expense__container">
+                <div className="expense__actions">
+                  <img className="expense__icon" src={editIcon} />
+                  <img className="expense__icon" src={deleteIcon} />
+                </div>
+                <div className="expense__bottom-right">
+                  {expenseProfileList
+                    .filter((item) => item.expense_id === expense.id)
+                    .filter(
+                      (item) => item.profile_name !== expense.profile_name
+                    )
+                    .map((item) => (
+                      <p className="expense__pay">
+                        {item.profile_name} owes /{" "}
+                        <span className="expense__single">
+                          ${item.single_expense}
+                        </span>
+                      </p>
+                    ))}
+                </div>
+              </div>
             </div>
           )}
         </article>

@@ -1,13 +1,11 @@
 import "./Footer.scss";
-import { Link, useMatch, useParams } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import pocketIcon from "../../assets/icons/pocket__box.svg";
 import expensesIcon from "../../assets/icons/menu_icon.svg";
 import addIcon from "../../assets/icons/add_icon.svg";
 import profilesIcon from "../../assets/icons/profiles_icon.svg";
 
-function Footer() {
-  const { pocketsId } = useParams;
-
+function Footer({ selectedPocketId }) {
   const matchPockets = useMatch("/pockets/");
   const matchExpenses = useMatch("/pockets/:pocketsId/expenses");
   const matchAdd = useMatch("/pockets/:pocketsId/expenses/add");
@@ -28,7 +26,10 @@ function Footer() {
       </div>
       {pocketClicked && (
         <div className="footer__wrapper footer__wrapper--nav">
-          <Link to={`/pockets/${pocketsId}/expenses`} className="footer__link">
+          <Link
+            to={`/pockets/${selectedPocketId}/expenses`}
+            className="footer__link"
+          >
             <img
               className={`footer__icon ${
                 matchExpenses ? "footer__icon--active" : ""
@@ -38,7 +39,7 @@ function Footer() {
             />
           </Link>
           <Link
-            to={`/pockets/${pocketsId}/expenses/add`}
+            to={`/pockets/${selectedPocketId}/expenses/add`}
             className="footer__link"
           >
             <img
@@ -49,7 +50,10 @@ function Footer() {
               alt="Add"
             />
           </Link>
-          <Link to={`/pockets/${pocketsId}/profiles`} className="footer__link">
+          <Link
+            to={`/pockets/${selectedPocketId}/profiles`}
+            className="footer__link"
+          >
             <img
               className={`footer__icon ${
                 matchProfiles ? "footer__icon--active" : ""

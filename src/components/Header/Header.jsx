@@ -8,13 +8,13 @@ function Header() {
     <header className="header">
       <div className="header__wrapper">
         <div className="header__left">
-          <Link to="/">
+          <Link to="/login">
             <img className="header__icon" src={icon} />
           </Link>
           {/* <p className="header__name">{pocketName}</p> */}
         </div>
 
-        <Link to="/">
+        <Link to="/login">
           <img className="header__logo" src={logo} />
         </Link>
       </div>

@@ -7,6 +7,7 @@ import ExpenseCard from "../../components/ExpenseCard/ExpenseCard";
 function ExpensesPage() {
   const [expensesList, setExpensesList] = useState([]);
   const { pocketsId } = useParams();
+  const [totalExpenses, setTotalExpenses] = useState(0);
 
   useEffect(() => {
     const fetchExpenses = async () => {
@@ -25,12 +26,18 @@ function ExpensesPage() {
           }
         );
         setExpensesList(data);
+
+        const total = data.reduce(
+          (acc, expense) => acc + expense.total_expense,
+          0
+        );
+        setTotalExpenses(total);
       } catch (error) {
         console.error(error);
       }
     };
     fetchExpenses();
-  }, []);
+  }, [pocketsId]);
 
   if (expensesList === null) {
     return <p>Loading...</p>;
@@ -42,6 +49,10 @@ function ExpensesPage() {
         <div className="expenses__wrapper">
           <h1 className="expenses__title">Group Expenses</h1>
           <ExpenseCard expensesList={expensesList} />
+          <section className="expenses__bottom">
+            <h2 className="expenses__total">Total:</h2>
+            <p className="expenses__amount">${totalExpenses}</p>
+          </section>
         </div>
       </main>
     </>

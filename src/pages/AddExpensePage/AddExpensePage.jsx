@@ -7,6 +7,7 @@ import chevronRight from "../../assets/icons/Expand_white.svg";
 
 function AddExpensePage() {
   const [success, setSuccess] = useState(null);
+  const [error, setError] = useState(null);
   const [profileNameList, setProfileNameList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [selectedPeople, setSelectedPeople] = useState([]);
@@ -67,67 +68,70 @@ function AddExpensePage() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const token = sessionStorage.getItem("token");
+    try {
+      event.preventDefault();
 
-    const formData = new FormData(event.target);
-    const expenseData = {};
-    formData.forEach((value, key) => {
-      expenseData[key] = value;
-    });
+      const token = sessionStorage.getItem("token");
 
-    const totalExpense = parseFloat(expenseData.total_expense);
-    const numberOfPeople = selectedPeople.length;
-    const singleExpense = totalExpense / numberOfPeople;
-    expenseData.single_expense = singleExpense.toFixed(2);
-    expenseData.headcount = numberOfPeople;
-    expenseData.pocket_id = pocketsId;
+      const formData = new FormData(event.target);
+      const expenseData = {};
+      formData.forEach((value, key) => {
+        expenseData[key] = value;
+      });
 
-    const selectedPayerId = formData.get("profile_id");
-    expenseData.profile_id = selectedPayerId;
+      const totalExpense = parseFloat(expenseData.total_expense);
+      const numberOfPeople = selectedPeople.length;
+      const singleExpense = totalExpense / numberOfPeople;
+      expenseData.single_expense = singleExpense.toFixed(2);
+      expenseData.headcount = numberOfPeople;
+      expenseData.pocket_id = pocketsId;
 
-    const selectedCategoryId = formData.get("category_id");
-    expenseData.category_id = selectedCategoryId;
+      const selectedPayerId = formData.get("profile_id");
+      expenseData.profile_id = selectedPayerId;
 
-    const { data: newExpense } = await axios.post(
-      process.env.REACT_APP_BASE_URL +
-        "/pockets/" +
-        pocketsId +
-        "/expenses/add",
-      expenseData,
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
+      const selectedCategoryId = formData.get("category_id");
+      expenseData.category_id = selectedCategoryId;
 
-    const expenseId = newExpense && newExpense.id;
-
-    if (expenseId) {
-      const expenseProfileData = selectedPeople.map((profileId) => ({
-        expense_id: expenseId,
-        profile_id: profileId,
-      }));
-
-      await axios.post(
+      const { data: newExpense } = await axios.post(
         process.env.REACT_APP_BASE_URL +
           "/pockets/" +
           pocketsId +
-          "/expense_profile/add",
-        expenseProfileData,
+          "/expenses/add",
+        expenseData,
         {
           headers: {
             Authorization: "Bearer " + token,
           },
         }
       );
-      setSuccess("Success!");
-      setTimeout(() => {
-        navigate(`/pockets/${pocketsId}/expenses`);
-      }, 1000);
-    } else {
-      console.error("Error creating expense: Invalid response");
+
+      const expenseId = newExpense && newExpense.id;
+      if (expenseId) {
+        const expenseProfileData = selectedPeople.map((profileId) => ({
+          expense_id: expenseId,
+          profile_id: profileId,
+        }));
+
+        await axios.post(
+          process.env.REACT_APP_BASE_URL +
+            "/pockets/" +
+            pocketsId +
+            "/expense_profile/add",
+          expenseProfileData,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        setSuccess("Success!");
+        setTimeout(() => {
+          navigate(`/pockets/${pocketsId}/expenses`);
+        }, 1000);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+      setError("Please fill out all the fields.");
     }
   };
 
@@ -227,11 +231,12 @@ function AddExpensePage() {
                   </div>
                 </label>
               </div>
+              {error && <div className="add__error">{error}</div>}
               <button type="submit" className="add__button">
                 <p className="add__button-text">CREATE </p>
                 <img className="add__arrow" src={chevronRight} />
               </button>
-              {success && <p className="message message--success">{success}</p>}
+              {success && <p className="add__success">{success}</p>}
             </div>
           </form>
         </div>

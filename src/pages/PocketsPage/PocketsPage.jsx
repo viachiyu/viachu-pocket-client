@@ -2,10 +2,8 @@ import "./PocketsPage.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Pocket from "../../components/PocketCard/Pocket";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 
-function PocketsPage() {
+function PocketsPage({ setSelectedPocketId }) {
   const [pocketsList, setPocketsList] = useState([]);
 
   useEffect(() => {
@@ -27,24 +25,25 @@ function PocketsPage() {
       }
     };
     fetchPockets();
-  });
-
-  if (pocketsList === null) {
-    return <p>Loading...</p>;
-  }
+  }, []);
 
   return (
     <>
-      <Header />
       <main className="pockets">
         <div className="pockets__wrapper">
           <h1 className="pockets__title">Your Pockets</h1>
           <section className="pockets__container">
-            <Pocket pocketsList={pocketsList} />
+            <article className="pocket">
+              {pocketsList.map((pocket) => (
+                <Pocket
+                  pocket={pocket}
+                  setSelectedPocketId={setSelectedPocketId}
+                />
+              ))}
+            </article>
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 }
