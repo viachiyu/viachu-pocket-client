@@ -19,6 +19,7 @@
   }
   &__name {
     font-size: 1.5rem;
+    color: #83a1cd;
   }
   &__totals {
     font-size: 14px;
@@ -58,14 +59,14 @@
     outline: 0;
 
     &--active {
-      border: 2px solid black;
+      border: 2px solid rgba(69, 121, 194);
       border-bottom: none;
       opacity: 1;
       border-radius: 0.25rem;
     }
   }
   &__contents {
-    border: 2px solid $border;
+    border: 2px solid rgba(69, 121, 194);
     border-radius: 0.5rem;
     border-top: none;
     padding: 0.5rem;
@@ -81,5 +82,7 @@
 
   &__label {
     font-size: 1rem;
+    text-align: center;
+    margin: 0.25rem 0rem 0.5rem 0rem;
   }
 }

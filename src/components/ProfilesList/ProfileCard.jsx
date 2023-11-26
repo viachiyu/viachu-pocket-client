@@ -179,7 +179,7 @@ function ProfileCard({ filteredProfiles, expenseProfilesList, profileList }) {
                       : ""
                   }`}
                   >
-                    <h3 className="profile__label">Owes Breakdown</h3>
+                    <h3 className="profile__label">Who owes them what?</h3>
                     {profileList
                       .filter((miniprofile) => miniprofile.id !== profile.id)
                       .map((miniprofile) => (
@@ -199,13 +199,13 @@ function ProfileCard({ filteredProfiles, expenseProfilesList, profileList }) {
                       : ""
                   }`}
                   >
-                    <h3 className="profile__label">Debt Breakdown</h3>
+                    <h3 className="profile__label">Who do they owe?</h3>
                     {profileList
                       .filter((miniprofile) => miniprofile.id !== profile.id)
                       .map((miniprofile) => (
                         <div className="profile__box" key={miniprofile.id}>
                           <p className="profile__names">
-                            You owe {miniprofile.name} / $
+                            {profile.name} owes {miniprofile.name} / $
                             {amountsOwedByYou[miniprofile.id] || 0}
                           </p>
                         </div>

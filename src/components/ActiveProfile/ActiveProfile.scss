@@ -11,6 +11,9 @@
   }
   &__name {
     font-size: 2rem;
+    color: #83a1cd;
+    flex-grow: 1;
+    text-align: center;
   }
   &__totals {
     font-size: 14px;
@@ -38,14 +41,14 @@
     outline: 0;
 
     &--active {
-      border: 2px solid black;
+      border: 2px solid rgba(69, 121, 194);
       border-bottom: none;
       opacity: 1;
       border-radius: 0.25rem;
     }
   }
   &__contents {
-    border: 2px solid $border;
+    border: 2px solid rgba(69, 121, 194);
     border-radius: 0.5rem;
     border-top: none;
     padding: 0.5rem;
