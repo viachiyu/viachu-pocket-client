@@ -84,7 +84,7 @@ function AddPocketCard() {
             name="name"
             type="text"
             className="add-pocket__input"
-            placeholder="name of the pocket"
+            placeholder="Name"
           />
         </label>
         <label className="add-pocket__group">
@@ -94,7 +94,7 @@ function AddPocketCard() {
             name="notes"
             type="text"
             className="add-pocket__input"
-            placeholder="description of the pocket"
+            placeholder="Description of the pocket"
           />
         </label>
         <label className="add-pocket__group">
@@ -102,7 +102,7 @@ function AddPocketCard() {
           <input
             type="text"
             className="add-pocket__input"
-            placeholder="type their email..."
+            placeholder="Type their email..."
           />
         </label>
         <button type="submit" className="add-pocket__button">
