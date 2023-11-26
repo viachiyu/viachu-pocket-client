@@ -113,40 +113,40 @@ Client -> Link all pages together, test front end functionality, + Additional As
 
 ## Nice-to-haves
 
-- Split amounts individually
-- Category PieChart
+- Split amounts individually  
+- Category PieChart  
 
 ### Installation
 
-Ensure you have access to front end and back end code:
-Front End: https://github.com/viachiyu/olivia-chu-capstone
-Back End: https://github.com/viachiyu/olivia-chu-capstone-server
+Ensure you have access to front end and back end code:   
+Front End: https://github.com/viachiyu/olivia-chu-capstone   
+Back End: https://github.com/viachiyu/olivia-chu-capstone-server   
 
 ## Setting up Front End:
 
-git clone <ssh front end key>
-npm i [download node_modules]
-create .env file -> REACT_APP_BASE_URL=http://localhost:8080 (replace with your own localhost)
-Mobile Screen Size: 375px
+git clone <ssh front end key>  
+npm i [download node_modules]  
+create .env file -> REACT_APP_BASE_URL=http://localhost:8080 (replace with your own localhost)  
+Mobile Screen Size: 375px  
 
 ## Setting up Back End:
 
-git clone <ssh back end key>
-npm init [download node_modules]
-npm install knex mysql2 dotenv
+git clone <ssh back end key>  
+npm init [download node_modules]  
+npm install knex mysql2 dotenv  
 
-Run in command line:
-mysqld
-mysql -u root -p
-CREATE DATABASE capstone
+Run in command line:  
+mysqld  
+mysql -u root -p  
+CREATE DATABASE capstone  
 
-create .env file ->
-SERVER_PORT=8080
-DB_HOST=127.0.0.1
-DB_NAME=capstone
-DB_USER=""
-DB_PASSWORD=""
-JWT_KEY=oadcvkjnwkejfoxcwjkn
+create .env file ->  
+SERVER_PORT=8080  
+DB_HOST=127.0.0.1  
+DB_NAME=capstone  
+DB_USER=""  
+DB_PASSWORD=""  
+JWT_KEY=oadcvkjnwkejfoxcwjkn  
 
-npx knex migrate:latest (run database migrations)
-npx knex seed:run (seed data into tables)
+npx knex migrate:latest (run database migrations)  
+npx knex seed:run (seed data into tables)  
