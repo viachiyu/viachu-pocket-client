@@ -128,7 +128,7 @@ function ActiveProfile({
           >
             <h3 className="active__label">Who owes you what?</h3>
             {filteredProfiles.map((profile) => (
-              <p className="active__names">
+              <p className="active__names" key={profile.id}>
                 {" "}
                 {profile.name} owes you ${amountsOwedToYou[profile.id] || 0}
               </p>
@@ -141,7 +141,7 @@ function ActiveProfile({
             <h3 className="active__label">Who do you owe?</h3>
 
             {filteredProfiles.map((profile) => (
-              <div className="active__box">
+              <div className="active__box" key={profile.id}>
                 <p className="active__names">
                   {" "}
                   You owe {profile.name} ${amountsOwedByYou[profile.id] || 0}

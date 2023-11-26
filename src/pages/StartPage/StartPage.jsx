@@ -8,8 +8,7 @@ import lockIcon from "../../assets/icons/lock_icon.svg";
 import Logo from "../../assets/logo/logo-removebg-preview.png";
 
 function StartPage() {
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+  const [message, setMessage] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -23,14 +22,14 @@ function StartPage() {
 
       sessionStorage.setItem("token", response.data.token);
       sessionStorage.setItem("email", event.target.email.value);
-      setSuccess("Welcome Back!");
+      setMessage("Welcome Back!");
       setTimeout(() => {
         navigate("/pockets");
       }, 1200);
     } catch (error) {
       console.error(error);
-      setError(
-        "Incorrect email or password. Please double check and try again."
+      setMessage(
+        "Incorrect email or password. Please double-check and try again."
       );
     }
   };
@@ -72,8 +71,15 @@ function StartPage() {
             <p className="login__text">LOG IN </p>
             <img className="login__arrow" src={chevronRight} />
           </button>
-          {success && <div className="login__success">{success}</div>}
-          {error && <div className="login__message">{error}</div>}
+          {message && (
+            <div
+              className={`login__message ${
+                message.includes("Please") ? "login__error" : "login__success"
+              }`}
+            >
+              {message}
+            </div>
+          )}
         </form>
 
         <p className="start__signup">

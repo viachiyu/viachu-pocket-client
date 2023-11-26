@@ -18,11 +18,15 @@
   }
 
   &__add {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
-
+  &__top {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 1rem;
+  }
   &__button {
-    margin-left: 2rem;
     font-size: 14px;
     padding: 0.5rem 1rem;
     background: $pt-blue;

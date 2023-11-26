@@ -10,8 +10,8 @@ import emailIcon from "../../assets/icons/email_icon.svg";
 import chevronRight from "../../assets/icons/Expand_right.svg";
 
 function SignupPage() {
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+  const [message, setMessage] = useState(null);
+  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -21,7 +21,8 @@ function SignupPage() {
     const confirmPassword = event.target.confirmPassword.value;
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setMessage("Passwords do not match");
+      setIsError(true);
       return;
     }
 
@@ -32,13 +33,15 @@ function SignupPage() {
         password: event.target.password.value,
       });
 
-      setSuccess("Success!");
+      setMessage("Success!");
+      setIsError(false);
       setTimeout(() => {
         navigate("/login");
       }, 1200);
     } catch (error) {
       console.error(error);
-      setError(error.response.data);
+      setMessage(error.response.data);
+      setIsError(true);
     }
   };
 
@@ -89,8 +92,15 @@ function SignupPage() {
                 placeholder="Confirm Password"
               />
             </div>
-            {success && <div className="signup__success">{success}</div>}
-            {error && <div className="signup__message">{error}</div>}
+            {message && (
+              <div
+                className={`signup__message ${
+                  isError ? "signup__error" : "signup__success"
+                }`}
+              >
+                {message}
+              </div>
+            )}
 
             <button className="signup__button">
               <p className="signup__text">SIGN UP </p>

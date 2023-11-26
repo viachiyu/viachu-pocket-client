@@ -1,13 +1,35 @@
 import "./AddPocketCard.scss";
 import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import chevronRight from "../../assets/icons/Expand_white.svg";
 
 function AddPocketCard() {
-  const [success, setSuccess] = useState(null);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const [message, setMessage] = useState(null);
+  const [chosenProfile, setChosenProfile] = useState(null);
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+
+    const fetchProfiles = async () => {
+      try {
+        const { data } = await axios.get(
+          process.env.REACT_APP_BASE_URL + "/pockets/profiles",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        const loggedInUser = data.find(
+          (profile) => profile.email === sessionStorage.getItem("email")
+        );
+        setChosenProfile(loggedInUser);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchProfiles();
+  }, []);
 
   const handleSubmit = async (event) => {
     try {
@@ -29,13 +51,26 @@ function AddPocketCard() {
           },
         }
       );
-      setSuccess("Success!");
+      await axios.post(
+        process.env.REACT_APP_BASE_URL + "/pockets/pocket_profile",
+        {
+          pocket_id: newPocket.id,
+          profile_id: chosenProfile.id,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+
+      setMessage("Success!");
       setTimeout(() => {
         window.location.reload();
       }, 1000);
     } catch (error) {
       console.error("An error occurred:", error);
-      setError("Please fill out all the fields.");
+      setMessage("Please fill out all the fields.");
     }
   };
 
@@ -65,19 +100,26 @@ function AddPocketCard() {
         <label className="add-pocket__group">
           <p className="add-pocket__label">Invite your friends!</p>
           <input
-            id="email"
-            name="email"
             type="text"
             className="add-pocket__input"
             placeholder="type their email..."
           />
         </label>
-        {error && <div className="add__error">{error}</div>}
         <button type="submit" className="add-pocket__button">
           <p className="add-pocket__button-text">CREATE </p>
           <img className="add-pocket__arrow" src={chevronRight} />
         </button>
-        {success && <p className="add__success">{success}</p>}
+        {message && (
+          <p
+            className={`add__message ${
+              message.includes("Please")
+                ? "add-pocket__error"
+                : "add-pocket__success"
+            }`}
+          >
+            {message}
+          </p>
+        )}
       </form>
     </article>
   );

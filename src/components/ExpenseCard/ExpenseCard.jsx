@@ -99,7 +99,7 @@ function ExpenseCard({ expensesList }) {
                       (item) => item.profile_name !== expense.profile_name
                     )
                     .map((item) => (
-                      <p className="expense__pay">
+                      <p className="expense__pay" key={item.id}>
                         {item.profile_name} owes /{" "}
                         <span className="expense__single">
                           ${item.single_expense}

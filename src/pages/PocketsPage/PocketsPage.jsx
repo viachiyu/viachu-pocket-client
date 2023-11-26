@@ -50,14 +50,16 @@ function PocketsPage({ setSelectedPocketId }) {
             </article>
           </section>
           <div className="pockets__add">
-            <button
-              className={`pockets__button ${
-                isAddCardVisible ? "pockets__button--active" : ""
-              }`}
-              onClick={toggleAddCardVisibility}
-            >
-              + ADD NEW POCKET
-            </button>
+            <div className="pockets__top">
+              <button
+                className={`pockets__button ${
+                  isAddCardVisible ? "pockets__button--active" : ""
+                }`}
+                onClick={toggleAddCardVisibility}
+              >
+                + ADD NEW POCKET
+              </button>
+            </div>
             {isAddCardVisible && <AddPocketCard />}
           </div>
         </div>
