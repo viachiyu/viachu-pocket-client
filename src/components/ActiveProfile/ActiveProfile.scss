@@ -1,0 +1,65 @@
+@use "../../styles/partials/reset.scss";
+@use "../../styles/partials/typography.scss";
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.active {
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  &__name {
+    font-size: 2rem;
+  }
+  &__totals {
+    font-size: 14px;
+    text-align: end;
+  }
+
+  &__container {
+    margin: 1rem;
+    margin-top: 0rem;
+  }
+
+  &__tabs {
+    width: 100%;
+  }
+
+  &__tab {
+    width: 33%;
+    font-size: 14px;
+    padding: 0.25rem 1rem;
+    cursor: pointer;
+    opacity: 0.6;
+    background: white;
+    border: 0;
+    border-bottom: 2px solid $border;
+    outline: 0;
+
+    &--active {
+      border: 2px solid black;
+      border-bottom: none;
+      opacity: 1;
+      border-radius: 0.25rem;
+    }
+  }
+  &__contents {
+    border: 2px solid $border;
+    border-radius: 0.5rem;
+    border-top: none;
+    padding: 0.5rem;
+  }
+
+  &__content {
+    display: none;
+
+    &--active {
+      display: block;
+    }
+  }
+
+  &__label {
+    font-size: 1rem;
+  }
+}

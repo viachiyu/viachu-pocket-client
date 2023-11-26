@@ -22,6 +22,7 @@ function StartPage() {
       });
 
       sessionStorage.setItem("token", response.data.token);
+      sessionStorage.setItem("email", event.target.email.value);
       setSuccess("Welcome Back!");
       setTimeout(() => {
         navigate("/pockets");

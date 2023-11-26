@@ -31,9 +31,10 @@ function SignupPage() {
         email: event.target.email.value,
         password: event.target.password.value,
       });
+
       setSuccess("Success!");
       setTimeout(() => {
-        navigate("/pockets");
+        navigate("/login");
       }, 1200);
     } catch (error) {
       console.error(error);
