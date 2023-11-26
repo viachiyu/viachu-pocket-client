@@ -2,6 +2,7 @@
 @use "./styles/partials/typography.scss";
 @use "./styles/partials/mixins" as *;
 @use "./styles/partials/variables" as *;
+
 .App {
   background-color: $background-cream;
   height: 120vh;
