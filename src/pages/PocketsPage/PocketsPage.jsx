@@ -38,6 +38,7 @@ function PocketsPage({ setSelectedPocketId }) {
                 <Pocket
                   pocket={pocket}
                   setSelectedPocketId={setSelectedPocketId}
+                  key={pocket.id}
                 />
               ))}
             </article>
