@@ -9,7 +9,7 @@
 
   &__wrapper {
     border: 1px solid $border;
-    border-radius: 5px;
+    border-radius: 0.3125rem;
     background-color: white;
     margin-bottom: 1rem;
 
@@ -36,7 +36,7 @@
     background: $pt-blue;
     color: white;
     font-family: "Chakra Petch";
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     padding: 0.5rem 1rem 0.5rem 0.75rem;
     border-radius: 1rem;
@@ -49,6 +49,7 @@
     margin: 0 auto;
     margin-right: 0;
     justify-content: flex-end;
+
     &--active {
       border: 2px solid rgba(69, 121, 194);
       background: white;
@@ -79,7 +80,7 @@
     border-radius: 1rem;
     border: 2px solid #d1d1d4;
     background: none;
-    padding: 8px;
+    padding: 0.5rem;
     transition: 0.2s;
     align-self: center;
     width: 100%;
@@ -96,7 +97,7 @@
     background: $pt-blue;
     color: white;
     font-family: "Chakra Petch";
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     padding: 0.5rem 1rem 0.5rem 0.75rem;
     border-radius: 1rem;
@@ -112,7 +113,7 @@
   }
 
   &__button-text {
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: white;
     font-weight: 500;
     letter-spacing: 1px;
@@ -132,10 +133,11 @@
     padding-top: 0.5rem;
     padding-left: 0.5rem;
     transform: translateY(-0.25rem);
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3125rem;
     font-family: "Chakra Petch";
     margin-top: 0.5rem;
   }
+
   &__success {
     text-align: center;
     margin-top: 0.5rem;
@@ -143,7 +145,7 @@
     font-weight: 500;
     color: forestgreen;
     padding-left: 0.5rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3125rem;
     font-family: "Chakra Petch";
   }
 }

@@ -19,7 +19,7 @@
   }
 
   &__name {
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
   }
   &__right {
@@ -29,7 +29,7 @@
   }
   &__date {
     padding-top: 0.65rem;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
     padding-bottom: 0.75rem;
   }
@@ -50,7 +50,7 @@
   &__toggle {
     padding: 0rem 1.5rem 1rem 1.5rem;
     padding-top: 0rem;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
   }
 
@@ -80,6 +80,6 @@
   }
 
   &__link {
-    height: 20px;
+    height: 1.25rem;
   }
 }

@@ -29,7 +29,7 @@
   &__slogan {
     margin-top: 0.75rem;
     align-self: center;
-    font-size: 12px;
+    font-size: 0.75rem;
     color: #040328;
     font-family: "Chakra Petch";
   }
@@ -42,14 +42,14 @@
 
   &__signup {
     margin-top: 0.75rem;
-    font-size: 12px;
+    font-size: 0.75rem;
     display: flex;
     align-self: center;
     font-family: "Chakra Petch";
   }
 
   &__link {
-    padding-left: 3px;
+    padding-left: 0.1875rem;
     color: #43628a;
     font-weight: 400;
     font-family: "Chakra Petch";
@@ -71,7 +71,7 @@
 
   &__icon {
     position: absolute;
-    left: 19px;
+    left: 1.1875rem;
     top: 2px;
   }
 
@@ -79,8 +79,8 @@
     border: none;
     border-bottom: 2px solid #d1d1d4;
     background: none;
-    padding: 8px;
-    padding-left: 30px;
+    padding: 0.5rem;
+    padding-left: 1.875rem;
     width: 88%;
     transition: 0.2s;
     align-self: center;
@@ -96,7 +96,7 @@
 
   &__button {
     background: #fff;
-    font-size: 14px;
+    font-size: 0.875rem;
     padding: 0.3rem 0.75rem;
     border-radius: 1rem;
     border: 1px solid #d4d3e8;
@@ -118,7 +118,7 @@
   }
 
   &__text {
-    font-size: 13px;
+    font-size: 10.1875rem;
     color: #43628a;
     font-weight: 500;
     letter-spacing: 1px;
@@ -131,7 +131,7 @@
   }
 
   &__error {
-    font-size: 12px;
+    font-size: 0.75rem;
     color: red;
     font-weight: 500;
 
@@ -144,7 +144,7 @@
   }
 
   &__success {
-    font-size: 12px;
+    font-size: 0.75rem;
     color: forestgreen;
     font-weight: 500;
 

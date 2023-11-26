@@ -86,7 +86,7 @@
 
   &__single {
     padding-left: 0.5rem;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   &__label {
@@ -96,7 +96,7 @@
   &__button {
     background: $pt-blue;
     color: white;
-    font-size: 14px;
+    font-size: 0.875rem;
     padding: 0.5rem;
     border-radius: 1rem;
     border: 1px solid #d4d3e8;
@@ -110,7 +110,7 @@
   }
 
   &__button-text {
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: white;
     font-weight: 500;
     letter-spacing: 1px;
