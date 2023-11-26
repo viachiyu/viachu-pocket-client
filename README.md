@@ -2,7 +2,7 @@
 
 ## Overview
 
-This app is designed to simplify this process for groups, making it effortless to track and divide expenses. When the time comes to settle up at the end of the trip, the app has already done the math, so you know exactly what you owe or are owed!
+This mobile-view app is designed to simplify this process for groups, making it effortless to track and divide expenses. When the time comes to settle up at the end of the trip, the app has already done the math, so you know exactly what you owe or are owed!
 
 ### Problem
 
@@ -12,12 +12,13 @@ I have realised that especially during big group trips or outings, splitting bil
 
 ### User Profile
 
-Single user, one profile.
+Single user at a time, must log in/sign up.
 
 ### Features
 
-Within the app, the group can establish a personalised 'pocket,' where each member will set up and create their own profile. This feature provides the flexibility to input expenses, specifying who paid what and how the total should be divided among the group, either evenly or according to individual shares. Additionally, the app offers categorisation options, allowing users to label their expenditures, making it convenient to track expenses related to food, activities, drinks, shopping, and more.
-Additionally, the app will feature a section where members can securely store their preferred payment methods, such as bank details, PayPal email, VenMo numbers, and more. This ensures that when it's time for reimbursement, individuals can conveniently access the necessary information to make payments, eliminating the need for awkward requests or exchanges of payment details.
+Within the app, the group can establish a personalised 'pocket,' to store all their shared expenses. This feature provides the flexibility to input expenses, specifying who paid what and how the total should be divided among the group in regards to who was involved with the expense. Additionally, the app offers categorisation options, allowing users to label their expenditures, making it convenient to track expenses related to food, activities, drinks, shopping, and more.
+
+The app will feature a section where members can securely store their preferred payment methods, such as bank details, PayPal email, VenMo numbers, and more. This ensures that when it's time for reimbursement, individuals can conveniently access the necessary information to make payments, eliminating the need for awkward requests or exchanges of payment details. In the profiles section, users can easily check how much they are owed by who, and how much they owe and specifically to who.
 
 ## Implementation
 
@@ -29,15 +30,11 @@ HTML, CSS, SASS, React.js, Node.js, Express.js, Knex.js, MySQL
 
 1. Home Page: Logo + Log In
 2. Signup Page: Sign up an account/profile.
-3. Pockets page: Create a pocket or click into an existing one
-4. Expenses Page: List of all previous expenses of the pocket(top most recent)
+3. Pockets page: Create a pocket, click into an existing one or delete pocket.
+4. Expenses Page: List of all previous expenses of the pocket.
 5. AddExpense Page: Create a new expense (redirects back to expense list page after)
-6. EditExpense Page: Edit expense on the list
+6. EditExpense Page: Edit expense on the list (redirects back to expense list page after)
 7. Profiles Page: Active profile at top, rest of profiles under it
-8. EditProfile: Edit active profile on the list
-9. Delete Pocket -> delete pocket on the list (modal on Pockets Page)
-10. Delete Expense -> delete expense on the list (modal on Expenses Page)
-11. Delete Profile -> delete profile on the list (modal on Profiles Page)
 
 ### Mockups
 
@@ -49,34 +46,38 @@ N/A
 
 ### Data
 
-Creating my own database: Profiles & Expenses
+Creating my own database:
+
+1. Pockets Table
+2. Profile Table
+3. Pocket_profile Table (many to many relationship)
+4. Category Table
+5. Expenses Table
+6. Expense_Profile Table (many to many relationship)
 
 ### Endpoints
 
 /GET all pockets
 /GET pocket by id
-
 /ADD pocket
-/EDIT pocket
 /DELETE pocket
 
 /GET all profiles
 /GET profile by id
-
-/ADD profile
-/EDIT profile
-/DELETE profile
+/ADD profile (signup)
 
 /GET all expenses
 /GET expense by id
-
 /ADD expense
 /EDIT expense
 /DELETE expense
 
+/GET expenses_profiles
+
 ### Auth
 
-OAuth -> LogIn/SignUp functionality
+OAuth -> LogIn/SignUp functionality, token & email to be stored in sessionStorage.
+SessionStorage cleared when user signs out by clicking logo icons in header.
 
 ## Roadmap
 
@@ -114,4 +115,38 @@ Client -> Link all pages together, test front end functionality, + Additional As
 
 - Split amounts individually
 - Category PieChart
-- Different Currency option
+
+### Installation
+
+Ensure you have access to front end and back end code:
+Front End: https://github.com/viachiyu/olivia-chu-capstone
+Back End: https://github.com/viachiyu/olivia-chu-capstone-server
+
+## Setting up Front End:
+
+git clone <ssh front end key>
+npm i [download node_modules]
+create .env file -> REACT_APP_BASE_URL=http://localhost:8080 (replace with your own localhost)
+Mobile Screen Size: 375px
+
+## Setting up Back End:
+
+git clone <ssh back end key>
+npm init [download node_modules]
+npm install knex mysql2 dotenv
+
+Run in command line:
+mysqld
+mysql -u root -p
+CREATE DATABASE capstone
+
+create .env file ->
+SERVER_PORT=8080
+DB_HOST=127.0.0.1
+DB_NAME=capstone
+DB_USER=""
+DB_PASSWORD=""
+JWT_KEY=oadcvkjnwkejfoxcwjkn
+
+npx knex migrate:latest (run database migrations)
+npx knex seed:run (seed data into tables)
