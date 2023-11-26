@@ -16,4 +16,29 @@
     font-weight: 500;
     font-family: "Chakra Petch";
   }
+
+  &__add {
+    margin-top: 1rem;
+  }
+
+  &__button {
+    margin-left: 2rem;
+    font-size: 14px;
+    padding: 0.5rem 1rem;
+    background: $pt-blue;
+    color: white;
+    border: 0;
+    border-bottom: 2px solid $border;
+    outline: 0;
+    border-radius: 0.5rem;
+    border: 2px solid rgba(69, 121, 194);
+    font-family: "Chakra Petch";
+    font-weight: 500;
+
+    &--active {
+      background: white;
+      border-bottom: none;
+      color: black;
+    }
+  }
 }

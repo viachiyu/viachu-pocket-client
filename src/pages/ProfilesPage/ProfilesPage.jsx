@@ -2,7 +2,7 @@ import "./ProfilesPage.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProfileList from "../../components/ProfilesList/ProfileCard";
+import ProfileList from "../../components/ProfileCard/ProfileCard";
 import ActiveProfile from "../../components/ActiveProfile/ActiveProfile";
 
 function ProfilesPage() {

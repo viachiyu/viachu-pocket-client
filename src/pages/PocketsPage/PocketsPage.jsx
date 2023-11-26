@@ -2,9 +2,11 @@ import "./PocketsPage.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Pocket from "../../components/PocketCard/Pocket";
+import AddPocketCard from "../../components/AddPocketCard/AddPocketCard";
 
 function PocketsPage({ setSelectedPocketId }) {
   const [pocketsList, setPocketsList] = useState([]);
+  const [isAddCardVisible, setIsAddCardVisible] = useState(false);
 
   useEffect(() => {
     const fetchPockets = async () => {
@@ -27,6 +29,10 @@ function PocketsPage({ setSelectedPocketId }) {
     fetchPockets();
   }, []);
 
+  const toggleAddCardVisibility = () => {
+    setIsAddCardVisible(!isAddCardVisible);
+  };
+
   return (
     <>
       <main className="pockets">
@@ -43,6 +49,17 @@ function PocketsPage({ setSelectedPocketId }) {
               ))}
             </article>
           </section>
+          <div className="pockets__add">
+            <button
+              className={`pockets__button ${
+                isAddCardVisible ? "pockets__button--active" : ""
+              }`}
+              onClick={toggleAddCardVisibility}
+            >
+              + ADD NEW POCKET
+            </button>
+            {isAddCardVisible && <AddPocketCard />}
+          </div>
         </div>
       </main>
     </>
