@@ -1,0 +1,26 @@
+@use "../../styles/partials/reset.scss";
+@use "../../styles/partials/typography.scss";
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+.header {
+  padding: 0.85rem 1rem 0.5rem 0.9rem;
+  border-bottom: 2px solid $border;
+  background-color: rgba(250, 250, 255, 0.75);
+
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+  }
+  &__logo {
+    width: 6.5rem;
+    height: 2rem;
+    object-fit: contain;
+  }
+}

@@ -1,0 +1,59 @@
+@use "../../styles/partials/reset.scss";
+@use "../../styles/partials/typography.scss";
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.pocket {
+  &__link {
+    text-decoration: none;
+    color: black;
+  }
+  &__card {
+    background-color: rgb(255, 243, 213);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    width: 100%;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin-bottom: 0.2rem;
+    height: 5.625rem;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-left: 2px solid $pt-blue;
+    padding-left: 0.5rem;
+    height: 4.375rem;
+  }
+
+  &__link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  &__image {
+    width: 4.0625rem;
+  }
+  &__text {
+    margin-left: 1rem;
+    flex-grow: 1;
+  }
+  &__name {
+    font-size: 1rem;
+    font-weight: 500;
+    padding-bottom: 0.25rem;
+  }
+
+  &__notes {
+    font-size: 0.875rem;
+  }
+
+  &__icon {
+    align-self: flex-end;
+    margin-left: 0.5rem;
+    width: 1.25rem;
+  }
+}

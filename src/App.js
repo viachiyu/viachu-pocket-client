@@ -1,23 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import StartPage from "./pages/StartPage/StartPage";
+import SignupPage from "./pages/SignupPage/SignupPage";
+import ExpensesPage from "./pages/ExpensesPage/ExpensesPage";
+import AddExpensePage from "./pages/AddExpensePage/AddExpensePage";
+import EditExpensePage from "./pages/EditExpensePage/EditExpensePage";
+import ProfilesPage from "./pages/ProfilesPage/ProfilesPage";
+import EditProfilePage from "./pages/EditProfilePage/EditProfilePage";
+import PocketsPage from "./pages/PocketsPage/PocketsPage";
+import ShellPage from "./pages/ShellPage/ShellPage";
 
 function App() {
+  const [selectedPocketId, setSelectedPocketId] = useState(0);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<StartPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+
+          <Route
+            path="/"
+            element={<ShellPage selectedPocketId={selectedPocketId} />}
+          >
+            <Route
+              path="/pockets"
+              element={
+                <PocketsPage setSelectedPocketId={setSelectedPocketId} />
+              }
+            />
+            <Route
+              path="/pockets/:pocketsId/expenses"
+              element={<ExpensesPage />}
+            />
+            <Route
+              path="/pockets/:pocketsId/expenses/add"
+              element={<AddExpensePage />}
+            />
+            <Route
+              path="/pockets/:pocketsId/expenses/:expenseId/edit"
+              element={<EditExpensePage />}
+            />
+            <Route
+              path="/pockets/:pocketsId/profiles"
+              element={<ProfilesPage />}
+            />
+            <Route
+              path="profile/:profileId/edit"
+              element={<EditProfilePage />}
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

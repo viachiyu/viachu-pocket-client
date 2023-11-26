@@ -1,0 +1,40 @@
+@use "../../styles/partials/reset.scss";
+@use "../../styles/partials/typography.scss";
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.delete-pocket {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(55, 52, 52, 0.5);
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  top: -12.8125rem;
+  left: -0.9375rem;
+
+  &__card {
+    z-index: 10;
+    position: relative;
+    background: white;
+    width: 13rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    top: 10rem;
+    left: 5rem;
+  }
+
+  &__title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: $pt-blue underline wavy;
+  }
+
+  &__actions {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

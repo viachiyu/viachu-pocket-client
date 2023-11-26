@@ -1,0 +1,85 @@
+@use "../../styles/partials/reset.scss";
+@use "../../styles/partials/typography.scss";
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.expense {
+  border-top: 1px dotted $border;
+
+  &__open {
+    padding: 1rem 1.5rem 0.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__total {
+    font-size: 1.85rem;
+    color: #83a1cd;
+    padding-bottom: 0.25rem;
+  }
+
+  &__name {
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+  &__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  &__date {
+    padding-top: 0.65rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    padding-bottom: 0.75rem;
+  }
+
+  &__trigger-button {
+    border: none;
+    background-color: white;
+  }
+
+  &__down-icon {
+    transition: transform 0.25s ease;
+  }
+
+  &__down-icon.rotated {
+    transform: rotate(-180deg);
+  }
+
+  &__toggle {
+    padding: 0rem 1.5rem 1rem 1.5rem;
+    padding-top: 0rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+
+  &__bold {
+    font-weight: 600;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: end;
+  }
+  &__icon {
+    width: 1.25rem;
+  }
+  &__bottom-right {
+    text-align: end;
+  }
+
+  &__single {
+    font-size: 1rem;
+  }
+
+  &__link {
+    height: 1.25rem;
+  }
+}
