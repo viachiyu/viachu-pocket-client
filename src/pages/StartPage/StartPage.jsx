@@ -2,6 +2,7 @@ import "./StartPage.scss";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import icon from "../../assets/icons/pocket_icon.png";
 import chevronRight from "../../assets/icons/Expand_right.svg";
 import userIcon from "../../assets/icons/user_icon.svg";
 import lockIcon from "../../assets/icons/lock_icon.svg";
@@ -37,7 +38,9 @@ function StartPage() {
   return (
     <main className="start">
       <section className="start__top">
-        <div className="start__image">animation</div>
+        <div className="start__image">
+          <img className="start__icon" src={icon} alt="Icon" />
+        </div>
         <img className="start__logo" src={Logo} />
         <p className="start__slogan">
           Track and divide group expenses with ease.

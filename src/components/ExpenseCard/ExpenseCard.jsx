@@ -1,14 +1,16 @@
 import "./ExpenseCard.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import chevronDown from "../../assets/icons/chevron_down.svg";
 import editIcon from "../../assets/icons/edit_icon.svg";
 import deleteIcon from "../../assets/icons/delete_icon.svg";
+import DeleteExpense from "../DeleteExpense/DeleteExpense";
 
 function ExpenseCard({ expensesList }) {
   const [collapsedStates, setCollapsedStates] = useState({});
-  const [expenseProfileList, setExpenseProfileList] = useState(null);
+  const [expenseProfileList, setExpenseProfileList] = useState({});
+  const [deleteToggle, setDeleteToggle] = useState(null);
   const { pocketsId } = useParams();
 
   useEffect(() => {
@@ -44,6 +46,7 @@ function ExpenseCard({ expensesList }) {
   }, [expensesList]);
 
   const handleToggle = (expenseId) => {
+    setDeleteToggle(null);
     setCollapsedStates((prev) => ({
       ...prev,
       [expenseId]: !prev[expenseId],
@@ -54,6 +57,16 @@ function ExpenseCard({ expensesList }) {
     const date = new Date(timestamp);
     return date.toLocaleDateString("en-GB");
   }
+
+  const handleDeleteToggle = (expenseId) => {
+    setDeleteToggle((prev) =>
+      prev?.expenseId === expenseId ? null : { expenseId, delete: true }
+    );
+  };
+
+  const handleCancelDelete = () => {
+    setDeleteToggle(null);
+  };
 
   return (
     <>
@@ -89,8 +102,17 @@ function ExpenseCard({ expensesList }) {
               </p>
               <div className="expense__container">
                 <div className="expense__actions">
-                  <img className="expense__icon" src={editIcon} />
-                  <img className="expense__icon" src={deleteIcon} />
+                  <Link
+                    className="expense__link"
+                    to={`/pockets/${pocketsId}/expenses/${expense.id}/edit`}
+                  >
+                    <img className="expense__icon" src={editIcon} />
+                  </Link>
+                  <img
+                    className="expense__icon"
+                    src={deleteIcon}
+                    onClick={() => handleDeleteToggle(expense.id)}
+                  />
                 </div>
                 <div className="expense__bottom-right">
                   {expenseProfileList
@@ -108,6 +130,12 @@ function ExpenseCard({ expensesList }) {
                     ))}
                 </div>
               </div>
+              {deleteToggle?.delete && (
+                <DeleteExpense
+                  expenseId={deleteToggle.expenseId}
+                  onCancel={handleCancelDelete}
+                />
+              )}
             </div>
           )}
         </article>

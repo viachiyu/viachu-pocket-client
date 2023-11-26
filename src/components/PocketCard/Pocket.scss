@@ -27,20 +27,33 @@
     height: 70px;
   }
 
+  &__link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1;
+  }
+
   &__image {
     width: 65px;
   }
   &__text {
     margin-left: 1rem;
+    flex-grow: 1;
   }
   &__name {
     font-size: 1rem;
     font-weight: 500;
     padding-bottom: 0.25rem;
-    flex-grow: 1;
   }
 
   &__notes {
     font-size: 14px;
+  }
+
+  &__icon {
+    align-self: flex-end;
+    margin-left: 0.5rem;
+    width: 1.25rem;
   }
 }

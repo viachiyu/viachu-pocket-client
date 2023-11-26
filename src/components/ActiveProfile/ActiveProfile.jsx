@@ -130,7 +130,7 @@ function ActiveProfile({
             {filteredProfiles.map((profile) => (
               <p className="active__names" key={profile.id}>
                 {" "}
-                {profile.name} owes you ${amountsOwedToYou[profile.id] || 0}
+                {profile.name} owes you / ${amountsOwedToYou[profile.id] || 0}
               </p>
             ))}
           </div>
@@ -144,7 +144,7 @@ function ActiveProfile({
               <div className="active__box" key={profile.id}>
                 <p className="active__names">
                   {" "}
-                  You owe {profile.name} ${amountsOwedByYou[profile.id] || 0}
+                  You owe {profile.name} / ${amountsOwedByYou[profile.id] || 0}
                 </p>
               </div>
             ))}
