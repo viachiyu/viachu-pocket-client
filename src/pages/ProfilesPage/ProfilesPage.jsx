@@ -7,6 +7,7 @@ import ActiveProfile from "../../components/ActiveProfile/ActiveProfile";
 
 function ProfilesPage() {
   const [chosenProfile, setChosenProfile] = useState(null);
+  const [expenseProfileList, setExpenseProfileList] = useState(null);
   const [profileList, setProfileList] = useState(null);
 
   const { pocketsId } = useParams();
@@ -38,6 +39,26 @@ function ProfilesPage() {
         console.error(error);
       }
     };
+
+    const fetchExpenseProfileList = async () => {
+      try {
+        const { data } = await axios.get(
+          process.env.REACT_APP_BASE_URL +
+            "/pockets/" +
+            pocketsId +
+            "/expensesprofiles",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setExpenseProfileList(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchExpenseProfileList();
     fetchProfiles();
   }, [profileId]);
 
@@ -49,16 +70,26 @@ function ProfilesPage() {
     (profile) => profile.id !== chosenProfile.id
   );
 
+  console.log(profileList);
+
   return (
     <>
       <main className="profiles">
         <div className="profiles__wrapper">
           <h1 className="profiles__title">Your Profile</h1>
-          <ActiveProfile chosenProfile={chosenProfile} />
+          <ActiveProfile
+            chosenProfile={chosenProfile}
+            expenseProfilesList={expenseProfileList}
+            filteredProfiles={filteredProfiles}
+          />
         </div>
         <div className="profiles__wrapper profiles__wrapper--bottom">
           <h2 className="profiles__title">Pocket People</h2>
-          <ProfileList filteredProfiles={filteredProfiles} />
+          <ProfileList
+            profileList={profileList}
+            filteredProfiles={filteredProfiles}
+            expenseProfilesList={expenseProfileList}
+          />
         </div>
       </main>
     </>

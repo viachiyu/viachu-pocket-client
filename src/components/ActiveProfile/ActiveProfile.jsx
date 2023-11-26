@@ -1,79 +1,91 @@
 import "./ActiveProfile.scss";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-function ActiveProfile({ chosenProfile }) {
+function ActiveProfile({
+  chosenProfile,
+  expenseProfilesList,
+  filteredProfiles,
+}) {
   const [toggleState, setToggleState] = useState(1);
-  const [expenseProfile, setExpenseProfile] = useState(null);
-  const { pocketsId } = useParams();
 
   const toggleTab = (index) => {
     setToggleState(index);
   };
 
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-
-    const fetchExpenseToken = async () => {
-      try {
-        const { data } = await axios.get(
-          process.env.REACT_APP_BASE_URL +
-            "/pockets/" +
-            pocketsId +
-            "/expensesprofiles",
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
-        setExpenseProfile(data);
-      } catch (error) {
-        console.error(error);
+  function calculateOwedAmount(expenses) {
+    const amountOwed = {};
+    expenses.forEach((expense) => {
+      const { profile_id, single_expense, paid_by } = expense;
+      if (profile_id !== paid_by) {
+        if (!amountOwed[paid_by]) {
+          amountOwed[paid_by] = 0;
+        }
+        amountOwed[paid_by] += single_expense;
       }
-    };
-    fetchExpenseToken();
-  }, [pocketsId]);
+    });
+    return amountOwed;
+  }
+  const owedAmounts = calculateOwedAmount(expenseProfilesList);
 
-  const calcTotalOwed = (expenses, chosenProfileId) => {
-    if (!expenses) {
-      return 0;
-    }
-    const totalOwed = expenses.reduce((total, expense) => {
-      if (expense.paid_by !== chosenProfileId) {
-        total += expense.single_expense;
+  function calculateAmountsOwedToYou(expenses, yourProfileId) {
+    const amountsOwedToYou = {};
+    expenses.forEach((expense) => {
+      const { profile_id, single_expense, paid_by } = expense;
+      if (paid_by === yourProfileId && profile_id !== yourProfileId) {
+        if (!amountsOwedToYou[profile_id]) {
+          amountsOwedToYou[profile_id] = 0;
+        }
+        amountsOwedToYou[profile_id] += single_expense;
       }
-      return total;
-    }, 0);
-    return totalOwed;
-  };
+    });
+    return amountsOwedToYou;
+  }
+  const amountsOwedToYou = calculateAmountsOwedToYou(
+    expenseProfilesList,
+    chosenProfile.id
+  );
 
-  const calcTotalDebt = (expenses, chosenProfileId) => {
-    if (!expenses) {
-      return 0;
-    }
-    return expenses.reduce((totalDebt, expense) => {
-      if (
-        expense.profile_id === chosenProfileId &&
-        expense.paid_by !== chosenProfileId
-      ) {
-        totalDebt += expense.single_expense;
+  function calculateTotalDebt(expenses, yourProfileId) {
+    let totalDebt = 0;
+    expenses.forEach((expense) => {
+      const { profile_id, single_expense, paid_by } = expense;
+      if (profile_id === yourProfileId && paid_by !== yourProfileId) {
+        totalDebt += single_expense;
       }
-      return totalDebt;
-    }, 0);
-  };
+    });
+    return totalDebt;
+  }
+  const totalDebt = calculateTotalDebt(expenseProfilesList, chosenProfile.id);
 
-  const totalOwed = calcTotalOwed(expenseProfile, chosenProfile.id);
-  const totalDebt = calcTotalDebt(expenseProfile, chosenProfile.id);
+  function calculateAmountsOwedByYou(expenses, yourProfileId) {
+    const amountsOwedByYou = {};
+    expenses.forEach((expense) => {
+      const { profile_id, single_expense, paid_by } = expense;
+      if (profile_id === yourProfileId && paid_by !== yourProfileId) {
+        if (!amountsOwedByYou[paid_by]) {
+          amountsOwedByYou[paid_by] = 0;
+        }
+        amountsOwedByYou[paid_by] += single_expense;
+      }
+    });
+
+    return amountsOwedByYou;
+  }
+  const amountsOwedByYou = calculateAmountsOwedByYou(
+    expenseProfilesList,
+    chosenProfile.id
+  );
 
   return (
     <article className="active">
       <div className="active__wrapper">
         <h2 className="active__name">{chosenProfile.name}</h2>
         <div className="active__totals">
-          <p className="active__total">total owed / ${totalOwed}</p>
-          <p className="active__total">total debt / ${totalDebt}</p>
+          <p className="active__total">
+            total owed / ${owedAmounts[chosenProfile.id] || 0}
+          </p>
+          <p className="active__total">total debt / ${totalDebt || 0}</p>
         </div>
       </div>
 
@@ -114,15 +126,28 @@ function ActiveProfile({ chosenProfile }) {
             className={`active__content
                 ${toggleState === 2 ? "active__content--active" : ""}`}
           >
-            <h3 className="active__label">Owes Breakdown</h3>
-            <p> mimimimi</p>
+            <h3 className="active__label">Who owes you what?</h3>
+            {filteredProfiles.map((profile) => (
+              <p className="active__names">
+                {" "}
+                {profile.name} owes you ${amountsOwedToYou[profile.id] || 0}
+              </p>
+            ))}
           </div>
           <div
             className={`active__content
                 ${toggleState === 3 ? "active__content--active" : ""}`}
           >
-            <h3 className="active__label">Debt Breakdown</h3>
-            <p> mimimimi</p>
+            <h3 className="active__label">Who do you owe?</h3>
+
+            {filteredProfiles.map((profile) => (
+              <div className="active__box">
+                <p className="active__names">
+                  {" "}
+                  You owe {profile.name} ${amountsOwedByYou[profile.id] || 0}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -61,5 +61,11 @@
 
   &__label {
     font-size: 1rem;
+    text-align: center;
+    margin: 0.25rem 0rem 0.5rem 0rem;
+  }
+
+  &__box {
+    display: flex;
   }
 }

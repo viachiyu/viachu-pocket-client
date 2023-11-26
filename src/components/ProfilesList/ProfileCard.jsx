@@ -1,14 +1,10 @@
 import "./ProfileCard.scss";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import chevronDown from "../../assets/icons/chevron_down.svg";
 
-function ProfileCard({ filteredProfiles }) {
+function ProfileCard({ filteredProfiles, expenseProfilesList, profileList }) {
   const [collapsedStates, setCollapsedStates] = useState({});
   const [toggleState, setToggleState] = useState({});
-  const [expenseProfile, setExpenseProfile] = useState(null);
-  const { pocketsId } = useParams();
 
   const toggleTab = (index, profileId) => {
     setToggleState((prev) => ({
@@ -16,30 +12,6 @@ function ProfileCard({ filteredProfiles }) {
       [profileId]: index,
     }));
   };
-
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-
-    const fetchExpenseToken = async () => {
-      try {
-        const { data } = await axios.get(
-          process.env.REACT_APP_BASE_URL +
-            "/pockets/" +
-            pocketsId +
-            "/expensesprofiles",
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
-        setExpenseProfile(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchExpenseToken();
-  }, [pocketsId]);
 
   useEffect(() => {
     const initialCollapsedStates = {};
@@ -59,45 +31,17 @@ function ProfileCard({ filteredProfiles }) {
     }));
   };
 
-  const calculateTotalOwed = (expenses, chosenProfileId) => {
-    if (!expenses) {
-      return 0;
-    }
-    const totalOwed = expenses.reduce((total, expense) => {
-      if (expense.paid_by === chosenProfileId) {
-        total += expense.single_expense;
-      }
-      return total;
-    }, 0);
-    return totalOwed;
-  };
-
-  const calculateTotalDebt = (expenses, profileId) => {
-    if (!expenses) {
-      return 0;
-    }
-    return expenses.reduce((totalDebt, expense) => {
-      if (expense.profile_id === profileId && expense.paid_by !== profileId) {
-        totalDebt += expense.single_expense;
-      }
-      return totalDebt;
-    }, 0);
-  };
-
   return (
     <>
       {filteredProfiles.map((profile) => {
-        const totalOwed = calculateTotalOwed(expenseProfile, profile.id);
-        const totalDebt = calculateTotalDebt(expenseProfile, profile.id);
-
         return (
           <article className="profile" key={profile.id}>
             <div className="profile__wrapper">
               <div className="profile__top">
                 <h2 className="profile__name">{profile.name}</h2>
                 <div className="profile__totals">
-                  <p className="profile__total">total owed / ${totalOwed}</p>
-                  <p className="profile__total">total debt / ${totalDebt}</p>
+                  <p className="profile__total">total owed / $idk</p>
+                  <p className="profile__total">total debt / $idk</p>
                 </div>
               </div>
               <button
@@ -167,7 +111,15 @@ function ProfileCard({ filteredProfiles }) {
                   }`}
                   >
                     <h3 className="profile__label">Owes Breakdown</h3>
-                    <p> mimimimi</p>
+                    {profileList
+                      .filter((miniprofile) => miniprofile.id !== profile.id)
+                      .map((miniprofile) => (
+                        <div className="profile__box" key={miniprofile.id}>
+                          <p className="profile__names">
+                            {miniprofile.name} owes you / $idk
+                          </p>
+                        </div>
+                      ))}
                   </div>
                   <div
                     className={`profile__content
@@ -178,7 +130,15 @@ function ProfileCard({ filteredProfiles }) {
                   }`}
                   >
                     <h3 className="profile__label">Debt Breakdown</h3>
-                    <p> mimimimi</p>
+                    {profileList
+                      .filter((miniprofile) => miniprofile.id !== profile.id)
+                      .map((miniprofile) => (
+                        <div className="profile__box" key={miniprofile.id}>
+                          <p className="profile__names">
+                            You owe {miniprofile.name} / $idk
+                          </p>
+                        </div>
+                      ))}
                   </div>
                 </div>
               </div>
