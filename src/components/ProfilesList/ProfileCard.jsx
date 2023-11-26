@@ -31,17 +31,86 @@ function ProfileCard({ filteredProfiles, expenseProfilesList, profileList }) {
     }));
   };
 
+  function calculateOwedAmount(expenses) {
+    const amountOwed = {};
+    expenses.forEach((expense) => {
+      const { profile_id, single_expense, paid_by } = expense;
+      if (profile_id !== paid_by) {
+        if (!amountOwed[paid_by]) {
+          amountOwed[paid_by] = 0;
+        }
+        amountOwed[paid_by] += single_expense;
+      }
+    });
+    return amountOwed;
+  }
+  const owedAmounts = calculateOwedAmount(expenseProfilesList);
+
+  function calculateTotalDebt(expenses, yourProfileId) {
+    let totalDebt = 0;
+    expenses.forEach((expense) => {
+      const { profile_id, single_expense, paid_by } = expense;
+      if (profile_id === yourProfileId && paid_by !== yourProfileId) {
+        totalDebt += single_expense;
+      }
+    });
+    return totalDebt;
+  }
+
+  function calculateAmountsOwedToYou(expenses, yourProfileIds) {
+    const amountsOwedToYou = {};
+    expenses.forEach((expense) => {
+      const { profile_id, single_expense, paid_by } = expense;
+      if (paid_by === yourProfileIds && profile_id !== yourProfileIds) {
+        if (!amountsOwedToYou[profile_id]) {
+          amountsOwedToYou[profile_id] = 0;
+        }
+        amountsOwedToYou[profile_id] += single_expense;
+      }
+    });
+    return amountsOwedToYou;
+  }
+
+  function calculateAmountsOwedByYou(expenses, yourProfileIds) {
+    const amountsOwedByYou = {};
+    expenses.forEach((expense) => {
+      const { profile_id, single_expense, paid_by } = expense;
+      if (profile_id === yourProfileIds && paid_by !== yourProfileIds) {
+        if (!amountsOwedByYou[paid_by]) {
+          amountsOwedByYou[paid_by] = 0;
+        }
+        amountsOwedByYou[paid_by] += single_expense;
+      }
+    });
+
+    return amountsOwedByYou;
+  }
+
   return (
     <>
       {filteredProfiles.map((profile) => {
+        const totalDebt = calculateTotalDebt(expenseProfilesList, profile.id);
+        const amountsOwedToYou = calculateAmountsOwedToYou(
+          expenseProfilesList,
+          profile.id
+        );
+        const amountsOwedByYou = calculateAmountsOwedByYou(
+          expenseProfilesList,
+          profile.id
+        );
+
         return (
           <article className="profile" key={profile.id}>
             <div className="profile__wrapper">
               <div className="profile__top">
                 <h2 className="profile__name">{profile.name}</h2>
                 <div className="profile__totals">
-                  <p className="profile__total">total owed / $idk</p>
-                  <p className="profile__total">total debt / $idk</p>
+                  <p className="profile__total">
+                    total owed / ${owedAmounts[profile.id] || 0}
+                  </p>
+                  <p className="profile__total">
+                    total debt / ${totalDebt || 0}
+                  </p>
                 </div>
               </div>
               <button
@@ -116,7 +185,8 @@ function ProfileCard({ filteredProfiles, expenseProfilesList, profileList }) {
                       .map((miniprofile) => (
                         <div className="profile__box" key={miniprofile.id}>
                           <p className="profile__names">
-                            {miniprofile.name} owes you / $idk
+                            {miniprofile.name} owes you / $
+                            {amountsOwedToYou[miniprofile.id] || 0}
                           </p>
                         </div>
                       ))}
@@ -135,7 +205,8 @@ function ProfileCard({ filteredProfiles, expenseProfilesList, profileList }) {
                       .map((miniprofile) => (
                         <div className="profile__box" key={miniprofile.id}>
                           <p className="profile__names">
-                            You owe {miniprofile.name} / $idk
+                            You owe {miniprofile.name} / $
+                            {amountsOwedByYou[miniprofile.id] || 0}
                           </p>
                         </div>
                       ))}
