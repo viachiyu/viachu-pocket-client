@@ -6,18 +6,14 @@ import chevronRight from "../../assets/icons/Expand_white.svg";
 import leftArrow from "../../assets/icons/leftarrow_icon.svg";
 
 function EditExpensePage() {
-  const [fields, setFields] = useState({
-    total_expense: "",
-    date: "",
-    name: "",
-    category: "",
-    profile_id: "",
-    single_expense: "",
-  });
+  const [fields, setFields] = useState({});
   const [profileNameList, setProfileNameList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [selectedPeople, setSelectedPeople] = useState([]);
   const [expenseProfile, setExpenseProfile] = useState([]);
+  const [expenseProfileId, setExpenseProfileId] = useState([]);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
   const { pocketsId } = useParams();
   const { expenseId } = useParams();
   const navigate = useNavigate();
@@ -94,31 +90,44 @@ function EditExpensePage() {
             },
           }
         );
-        console.log(data);
         setExpenseProfile(data);
       } catch (error) {
         console.error(error);
       }
     };
+
+    const getExpenseProfilebyId = async () => {
+      try {
+        const { data } = await axios.get(
+          process.env.REACT_APP_BASE_URL +
+            "/pockets/" +
+            pocketsId +
+            "/expensesprofiles/" +
+            expenseId,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+
+        const defaultSelectedPeople = data.map((item) => item.profile_id);
+        setSelectedPeople(defaultSelectedPeople);
+        setExpenseProfileId(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     getExpenseProfile();
+    getExpenseProfilebyId();
     fetchCategoryList();
     fetchProfileNameList();
     getExpense();
-  }, []);
+  }, [pocketsId, expenseId]);
 
   const formattedDate = new Date("2023-05-15T23:00:00.000Z")
     .toISOString()
     .split("T")[0];
-
-  function filterExpenseProfileByExpenseId(expenseProfile, expenseId) {
-    return expenseProfile.filter((item) => item.expense_id === expenseId);
-  }
-  const filteredExpenseProfile = filterExpenseProfileByExpenseId(
-    expenseProfile,
-    expenseId
-  );
-
-  console.log(filteredExpenseProfile);
 
   const handleCheckboxChange = (value) => {
     setSelectedPeople((prevSelectedPeople) => {
@@ -135,26 +144,30 @@ function EditExpensePage() {
     if (
       currentField.name === "total_expense" ||
       currentField.name === "name" ||
-      currentField.name === "description" ||
+      currentField.name === "date" ||
       currentField.name === "category_id" ||
       currentField.name === "profile_id"
     ) {
       setFields({ ...fields, [currentField.name]: currentField.value });
-    } else if (currentField.name === "expense_id") {
-      setFields({
-        ...fields,
-        id: expenseId,
-      });
     }
-    console.log(fields);
     return;
   };
 
+  console.log(selectedPeople);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const updatedExpenses = { ...fields };
-    delete updatedExpenses.expense_name;
-    console.log(updatedExpenses);
+    const token = sessionStorage.getItem("token");
+
+    const numberOfPeople = selectedPeople.length;
+    const singleExpense =
+      parseInt(event.target.total_expense.value) / numberOfPeople;
+
+    const requestObject = {
+      ...fields,
+      single_expense: singleExpense.toFixed(2),
+      headcount: numberOfPeople,
+    };
 
     try {
       await axios.put(
@@ -163,13 +176,42 @@ function EditExpensePage() {
           pocketsId +
           "/expenses/" +
           expenseId,
-        updatedExpenses
+        requestObject,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
       );
-      return setTimeout(() => {
-        navigate(`/pockets/${pocketsId}/expenses}`);
-      }, 2000);
+
+      if (expenseId) {
+        const expenseProfileData = selectedPeople.map((profileId) => ({
+          expense_id: expenseId,
+          profile_id: profileId,
+        }));
+
+        await axios.put(
+          process.env.REACT_APP_BASE_URL +
+            "/pockets/" +
+            pocketsId +
+            "/expensesprofiles/" +
+            expenseId,
+          expenseProfileData,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        setSuccess("Expense updated successfully");
+        setTimeout(() => {
+          navigate(`/pockets/${pocketsId}/expenses`);
+        }, 1500);
+        return;
+      }
     } catch (error) {
       console.error(error);
+      setError("Failed to update expense. Please try again.");
     }
   };
 
@@ -272,7 +314,9 @@ function EditExpensePage() {
                           id="headcount"
                           type="checkbox"
                           value={profileName.id}
-                          checked={selectedPeople.includes(profileName.id)}
+                          defaultChecked={expenseProfileId.some(
+                            (item) => item.profile_id === profileName.id
+                          )}
                           onChange={() => handleCheckboxChange(profileName.id)}
                         />
                         <p className="edit__single">{profileName.name}</p>
@@ -281,12 +325,12 @@ function EditExpensePage() {
                   </div>
                 </label>
               </div>
-              {/* {error && <div className="edit__error">{error}</div>} */}
+              {error && <div className="edit__error">{error}</div>}
               <button type="submit" className="edit__button">
                 <p className="edit__button-text">UPDATE </p>
                 <img className="edit__arrow" src={chevronRight} />
               </button>
-              {/* {success && <p className="edit__success">{success}</p>} */}
+              {success && <p className="edit__success">{success}</p>}
             </div>
           </form>
         </div>
