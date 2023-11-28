@@ -6,20 +6,14 @@ import chevronRight from "../../assets/icons/Expand_white.svg";
 import leftArrow from "../../assets/icons/leftarrow_icon.svg";
 
 function EditExpensePage() {
-  const [fields, setFields] = useState({
-    total_expense: "",
-    date: "",
-    name: "",
-    category_id: "",
-    profile_id: "",
-    single_expense: "",
-    headcount: "",
-  });
+  const [fields, setFields] = useState({});
   const [profileNameList, setProfileNameList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [selectedPeople, setSelectedPeople] = useState([]);
   const [expenseProfile, setExpenseProfile] = useState([]);
   const [expenseProfileId, setExpenseProfileId] = useState([]);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
   const { pocketsId } = useParams();
   const { expenseId } = useParams();
   const navigate = useNavigate();
@@ -156,45 +150,33 @@ function EditExpensePage() {
     ) {
       setFields({ ...fields, [currentField.name]: currentField.value });
     }
-    if (currentField.name === "expense_id") {
-      setFields({
-        ...fields,
-        id: expenseId,
-      });
-    }
-    if (
-      currentField.name === "single_expense" ||
-      currentField.name === "headcount"
-    ) {
-      const numberOfPeople = selectedPeople.length;
-      const singleExpense = fields.total_expense / numberOfPeople;
-
-      console.log(singleExpense);
-      setFields((prevFields) => ({
-        ...prevFields,
-        single_expense: singleExpense.toFixed(2),
-        headcount: selectedPeople.length,
-      }));
-    }
     return;
   };
+
   console.log(selectedPeople);
-  console.log(selectedPeople.length);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const token = sessionStorage.getItem("token");
 
-    try {
-      const updatedExpense = { ...fields };
+    const numberOfPeople = selectedPeople.length;
+    const singleExpense =
+      parseInt(event.target.total_expense.value) / numberOfPeople;
 
+    const requestObject = {
+      ...fields,
+      single_expense: singleExpense.toFixed(2),
+      headcount: numberOfPeople,
+    };
+
+    try {
       await axios.put(
         process.env.REACT_APP_BASE_URL +
           "/pockets/" +
           pocketsId +
           "/expenses/" +
           expenseId,
-        updatedExpense,
+        requestObject,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -221,13 +203,15 @@ function EditExpensePage() {
             },
           }
         );
-
-        return setTimeout(() => {
-          navigate(`/pockets/${pocketsId}/expenses/}`);
-        }, 2000);
+        setSuccess("Expense updated successfully");
+        setTimeout(() => {
+          navigate(`/pockets/${pocketsId}/expenses`);
+        }, 1500);
+        return;
       }
     } catch (error) {
       console.error(error);
+      setError("Failed to update expense. Please try again.");
     }
   };
 
@@ -331,7 +315,7 @@ function EditExpensePage() {
                           type="checkbox"
                           value={profileName.id}
                           defaultChecked={expenseProfileId.some(
-                            (item) => item.profile_id == profileName.id
+                            (item) => item.profile_id === profileName.id
                           )}
                           onChange={() => handleCheckboxChange(profileName.id)}
                         />
@@ -341,12 +325,12 @@ function EditExpensePage() {
                   </div>
                 </label>
               </div>
-              {/* {error && <div className="edit__error">{error}</div>} */}
+              {error && <div className="edit__error">{error}</div>}
               <button type="submit" className="edit__button">
                 <p className="edit__button-text">UPDATE </p>
                 <img className="edit__arrow" src={chevronRight} />
               </button>
-              {/* {success && <p className="edit__success">{success}</p>} */}
+              {success && <p className="edit__success">{success}</p>}
             </div>
           </form>
         </div>
