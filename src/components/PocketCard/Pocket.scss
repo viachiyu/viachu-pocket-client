@@ -22,7 +22,6 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-left: 2px solid $pt-blue;
     padding-left: 0.5rem;
     height: 4.375rem;
   }
@@ -35,7 +34,7 @@
   }
 
   &__image {
-    width: 4.0625rem;
+    width: 3rem;
   }
   &__text {
     margin-left: 1rem;
@@ -44,7 +43,7 @@
   &__name {
     font-size: 1rem;
     font-weight: 500;
-    padding-bottom: 0.25rem;
+    padding-bottom: 0.5rem;
   }
 
   &__notes {
