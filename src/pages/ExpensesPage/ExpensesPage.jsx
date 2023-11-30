@@ -39,7 +39,7 @@ function ExpensesPage() {
     fetchExpenses();
   }, [pocketsId]);
 
-  if (expensesList === null) {
+  if (!expensesList) {
     return <p>Loading...</p>;
   }
 
