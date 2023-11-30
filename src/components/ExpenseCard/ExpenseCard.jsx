@@ -9,7 +9,7 @@ import DeleteExpense from "../DeleteExpense/DeleteExpense";
 
 function ExpenseCard({ expensesList }) {
   const [collapsedStates, setCollapsedStates] = useState({});
-  const [expenseProfileList, setExpenseProfileList] = useState({});
+  const [expenseProfileList, setExpenseProfileList] = useState(null);
   const [deleteToggle, setDeleteToggle] = useState(null);
   const { pocketsId } = useParams();
 
@@ -35,7 +35,7 @@ function ExpenseCard({ expensesList }) {
       }
     };
     fetchExpenseProfileList();
-  }, [pocketsId]);
+  }, [pocketsId, expenseProfileList]);
 
   useEffect(() => {
     const initialCollapsedStates = {};
@@ -67,6 +67,10 @@ function ExpenseCard({ expensesList }) {
   const handleCancelDelete = () => {
     setDeleteToggle(null);
   };
+
+  if (expenseProfileList === null) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
