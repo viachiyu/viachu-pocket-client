@@ -215,6 +215,9 @@ function EditExpensePage() {
     }
   };
 
+  if (!expenseProfile) {
+    return <p>Loading...</p>;
+  }
   return (
     <>
       <main className="edit">
@@ -224,7 +227,7 @@ function EditExpensePage() {
               to={`/pockets/${pocketsId}/expenses`}
               className="edit__back-link"
             >
-              <img className="edit__back" src={leftArrow} />
+              <img className="edit__back" src={leftArrow} alt="back arrow" />
             </Link>
             <h1 className="edit__title">Edit expense</h1>
           </div>
@@ -328,7 +331,11 @@ function EditExpensePage() {
               {error && <div className="edit__error">{error}</div>}
               <button type="submit" className="edit__button">
                 <p className="edit__button-text">UPDATE </p>
-                <img className="edit__arrow" src={chevronRight} />
+                <img
+                  className="edit__arrow"
+                  src={chevronRight}
+                  alt="right arrow"
+                />
               </button>
               {success && <p className="edit__success">{success}</p>}
             </div>

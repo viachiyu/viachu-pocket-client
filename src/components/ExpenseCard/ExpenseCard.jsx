@@ -110,12 +110,17 @@ function ExpenseCard({ expensesList }) {
                     className="expense__link"
                     to={`/pockets/${pocketsId}/expenses/${expense.id}/edit`}
                   >
-                    <img className="expense__icon" src={editIcon} />
+                    <img
+                      className="expense__icon"
+                      src={editIcon}
+                      alt="edit icon"
+                    />
                   </Link>
                   <img
                     className="expense__icon"
                     src={deleteIcon}
                     onClick={() => handleDeleteToggle(expense.id)}
+                    alt="delete icon"
                   />
                 </div>
                 <div className="expense__bottom-right">

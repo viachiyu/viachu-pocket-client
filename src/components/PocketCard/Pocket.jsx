@@ -24,7 +24,7 @@ function Pocket({ pocket, setSelectedPocketId }) {
           className="pocket__link"
           onClick={() => setSelectedPocketId(pocket.id)}
         >
-          <img className="pocket__image" src={coin} />
+          <img className="pocket__image" src={coin} alt="pocket" />
           <div className="pocket__text">
             <h2 className="pocket__name">{pocket.name}</h2>
             <p className="pocket__notes">{pocket.notes}</p>
