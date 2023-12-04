@@ -36,7 +36,7 @@ function AddExpensePage() {
       }
     };
     fetchProfileNameList();
-  }, []);
+  }, [pocketsId]);
 
   useEffect(() => {
     const fetchCategoryList = async () => {
@@ -234,7 +234,11 @@ function AddExpensePage() {
               {error && <div className="add__error">{error}</div>}
               <button type="submit" className="add__button">
                 <p className="add__button-text">CREATE </p>
-                <img className="add__arrow" src={chevronRight} />
+                <img
+                  className="add__arrow"
+                  src={chevronRight}
+                  alt="right arrow"
+                />
               </button>
               {success && <p className="add__success">{success}</p>}
             </div>

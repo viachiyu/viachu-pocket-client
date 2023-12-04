@@ -21,6 +21,7 @@ function Footer({ selectedPocketId }) {
             className={`footer__icon
              ${matchPockets ? "footer__icon--active" : ""}`}
             src={pocketIcon}
+            alt="pocket icon"
           />
         </Link>
       </div>

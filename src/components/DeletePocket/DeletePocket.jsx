@@ -30,11 +30,13 @@ function DeletePocket({ pocketId, onCancel }) {
             className="delete-pocket__cancel"
             src={XIcon}
             onClick={onCancel}
+            alt="cancel delete"
           />
           <img
             className="delete-pocket__yes"
             src={TickIcon}
             onClick={handleDelete}
+            alt="tick delete"
           />
         </div>
       </div>

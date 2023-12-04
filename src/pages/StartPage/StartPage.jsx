@@ -50,7 +50,7 @@ function StartPage() {
         <form className="login" onSubmit={handleSubmit}>
           <div className="login__fields">
             <div className="login__field">
-              <img className="login__icon" src={userIcon} />
+              <img className="login__icon" src={userIcon} alt="user icon" />
               <input
                 className="login__input login__input--email"
                 type="text"
@@ -60,7 +60,7 @@ function StartPage() {
               />
             </div>
             <div className="login__field">
-              <img className="login__icon" src={lockIcon} />
+              <img className="login__icon" src={lockIcon} alt="lock icon" />
               <input
                 className="login__input login__input--password"
                 type="password"
@@ -72,7 +72,11 @@ function StartPage() {
           </div>
           <button className="login__button">
             <p className="login__text">LOG IN </p>
-            <img className="login__arrow" src={chevronRight} />
+            <img
+              className="login__arrow"
+              src={chevronRight}
+              alt="right arrow"
+            />
           </button>
           {message && (
             <div

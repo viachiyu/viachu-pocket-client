@@ -63,7 +63,7 @@ function ProfilesPage() {
     };
     fetchExpenseProfileList();
     fetchProfiles();
-  }, [profileId]);
+  }, [pocketsId, profileId]);
 
   if (chosenProfile === null) {
     return <p>Loading...</p>;
@@ -126,7 +126,11 @@ function ProfilesPage() {
                 </label>
                 <button type="submit" className="profiles__send">
                   <p className="profiles__button-text">SEND </p>
-                  <img className="profiles__arrow" src={chevronRight} />
+                  <img
+                    className="profiles__arrow"
+                    src={chevronRight}
+                    alt="arrow"
+                  />
                 </button>
                 {message && (
                   <p

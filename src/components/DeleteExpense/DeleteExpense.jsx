@@ -32,8 +32,18 @@ function DeleteExpense({ expenseId, onCancel }) {
     <div className="delete">
       <h2 className="delete__title">DELETE THIS EXPENSE?</h2>
       <div className="delete__actions">
-        <img className="delete__cancel" src={XIcon} onClick={onCancel} />
-        <img className="delete__yes" src={TickIcon} onClick={handleDelete} />
+        <img
+          className="delete__cancel"
+          src={XIcon}
+          onClick={onCancel}
+          alt="cancel icon"
+        />
+        <img
+          className="delete__yes"
+          src={TickIcon}
+          onClick={handleDelete}
+          alt="tick icon"
+        />
       </div>
     </div>
   );
