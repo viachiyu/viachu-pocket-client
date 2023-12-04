@@ -1,5 +1,5 @@
 import "./App.scss";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { useState } from "react";
 import StartPage from "./pages/StartPage/StartPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
@@ -18,6 +18,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<StartPage />} />
           <Route path="/signup" element={<SignupPage />} />
 
