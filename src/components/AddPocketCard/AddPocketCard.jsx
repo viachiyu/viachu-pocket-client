@@ -107,7 +107,11 @@ function AddPocketCard() {
         </label>
         <button type="submit" className="add-pocket__button">
           <p className="add-pocket__button-text">CREATE </p>
-          <img className="add-pocket__arrow" src={chevronRight} />
+          <img
+            className="add-pocket__arrow"
+            src={chevronRight}
+            alt="right arrow"
+          />
         </button>
         {message && (
           <p
