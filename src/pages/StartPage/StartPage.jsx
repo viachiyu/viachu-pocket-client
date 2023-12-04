@@ -41,7 +41,7 @@ function StartPage() {
         <div className="start__image">
           <img className="start__icon" src={icon} alt="Icon" />
         </div>
-        <img className="start__logo" src={Logo} />
+        <img className="start__logo" src={Logo} alt="logo" />
         <p className="start__slogan">
           Track and divide group expenses with ease.
         </p>
