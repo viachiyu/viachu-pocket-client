@@ -53,7 +53,7 @@ function SignupPage() {
           <h1 className="signup__title"> Sign Up</h1>
           <form className="signup__form" onSubmit={handleSubmit}>
             <div className="signup__field">
-              <img className="signup__icon" src={userIcon} />
+              <img className="signup__icon" src={userIcon} alt="usericon" />
               <input
                 className="signup__input"
                 type="text"
@@ -63,7 +63,7 @@ function SignupPage() {
               />
             </div>
             <div className="signup__field">
-              <img className="signup__icon" src={emailIcon} />
+              <img className="signup__icon" src={emailIcon} alt="email icon" />
               <input
                 className="signup__input"
                 type="text"
@@ -73,7 +73,7 @@ function SignupPage() {
               />
             </div>
             <div className="signup__field">
-              <img className="signup__icon" src={lockIcon} />
+              <img className="signup__icon" src={lockIcon} alt="lock icon" />
               <input
                 className="signup__input"
                 type="password"
@@ -83,7 +83,7 @@ function SignupPage() {
               />
             </div>
             <div className="signup__field">
-              <img className="signup__icon" src={lock2Icon} />
+              <img className="signup__icon" src={lock2Icon} alt="lock2" />
               <input
                 className="signup__input"
                 type="password"
@@ -104,7 +104,7 @@ function SignupPage() {
 
             <button className="signup__button">
               <p className="signup__text">SIGN UP </p>
-              <img className="signup__arrow" src={chevronRight} />
+              <img className="signup__arrow" src={chevronRight} alt="arrow" />
             </button>
           </form>
 
