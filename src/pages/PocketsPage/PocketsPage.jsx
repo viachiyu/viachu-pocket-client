@@ -14,7 +14,7 @@ function PocketsPage({ setSelectedPocketId }) {
 
       try {
         const { data } = await axios.get(
-          process.env.REACT_APP_BASE_URL + "pockets",
+          process.env.REACT_APP_BASE_URL + "/pockets",
           {
             headers: {
               Authorization: "Bearer " + token,
