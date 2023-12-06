@@ -16,10 +16,13 @@ function StartPage() {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/auth/login", {
-        email: event.target.email.value,
-        password: event.target.password.value,
-      });
+      const response = await axios.post(
+        process.env.REACT_APP_BASE_URL + "auth/login",
+        {
+          email: event.target.email.value,
+          password: event.target.password.value,
+        }
+      );
 
       sessionStorage.setItem("token", response.data.token);
       sessionStorage.setItem("email", event.target.email.value);

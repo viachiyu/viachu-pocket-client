@@ -27,11 +27,15 @@ function SignupPage() {
     }
 
     try {
-      await axios.post("http://localhost:8080/auth/register", {
-        name: event.target.name.value,
-        email: event.target.email.value,
-        password: event.target.password.value,
-      });
+      await axios.post(
+        process.env.REACT_APP_BASE_URL + "auth/register",
+
+        {
+          name: event.target.name.value,
+          email: event.target.email.value,
+          password: event.target.password.value,
+        }
+      );
 
       setMessage("Success!");
       setIsError(false);
