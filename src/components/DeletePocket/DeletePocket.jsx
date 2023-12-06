@@ -8,7 +8,7 @@ function DeletePocket({ pocketId, onCancel }) {
     const token = sessionStorage.getItem("token");
     try {
       await axios.delete(
-        process.env.REACT_APP_BASE_URL + "/pockets/" + pocketId,
+        process.env.REACT_APP_BASE_URL + "pockets/" + pocketId,
         {
           headers: {
             Authorization: "Bearer " + token,

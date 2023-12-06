@@ -12,7 +12,7 @@ function DeleteExpense({ expenseId, onCancel }) {
     try {
       await axios.delete(
         process.env.REACT_APP_BASE_URL +
-          "/pockets/" +
+          "pockets/" +
           pocketsId +
           "/expenses/" +
           expenseId,
