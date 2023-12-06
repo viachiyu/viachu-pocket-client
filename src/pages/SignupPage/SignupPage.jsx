@@ -28,7 +28,7 @@ function SignupPage() {
 
     try {
       await axios.post(
-        process.env.REACT_APP_BASE_URL + "auth/register",
+        process.env.REACT_APP_BASE_URL + "/auth/register",
 
         {
           name: event.target.name.value,

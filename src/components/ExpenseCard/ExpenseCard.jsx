@@ -20,7 +20,7 @@ function ExpenseCard({ expensesList }) {
       try {
         const { data } = await axios.get(
           process.env.REACT_APP_BASE_URL +
-            "pockets/" +
+            "/pockets/" +
             pocketsId +
             "/expensesprofiles",
           {

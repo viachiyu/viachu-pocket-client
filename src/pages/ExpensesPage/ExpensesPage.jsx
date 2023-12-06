@@ -15,7 +15,10 @@ function ExpensesPage() {
 
       try {
         const { data } = await axios.get(
-          process.env.REACT_APP_BASE_URL + "pockets/" + pocketsId + "/expenses",
+          process.env.REACT_APP_BASE_URL +
+            "/pockets/" +
+            pocketsId +
+            "/expenses",
           {
             headers: {
               Authorization: "Bearer " + token,

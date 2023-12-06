@@ -22,7 +22,10 @@ function ProfilesPage() {
     const fetchProfiles = async () => {
       try {
         const { data } = await axios.get(
-          process.env.REACT_APP_BASE_URL + "pockets/" + pocketsId + "/profiles",
+          process.env.REACT_APP_BASE_URL +
+            "/pockets/" +
+            pocketsId +
+            "/profiles",
           {
             headers: {
               Authorization: "Bearer " + token,

@@ -13,7 +13,7 @@ function AddPocketCard() {
     const fetchProfiles = async () => {
       try {
         const { data } = await axios.get(
-          process.env.REACT_APP_BASE_URL + "pockets/profiles",
+          process.env.REACT_APP_BASE_URL + "/pockets/profiles",
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -43,7 +43,7 @@ function AddPocketCard() {
       });
 
       const { data: newPocket } = await axios.post(
-        process.env.REACT_APP_BASE_URL + "pockets",
+        process.env.REACT_APP_BASE_URL + "/pockets",
         pocketData,
         {
           headers: {
@@ -52,7 +52,7 @@ function AddPocketCard() {
         }
       );
       await axios.post(
-        process.env.REACT_APP_BASE_URL + "pockets/pocket_profile",
+        process.env.REACT_APP_BASE_URL + "/pockets/pocket_profile",
         {
           pocket_id: newPocket.id,
           profile_id: chosenProfile.id,

@@ -24,7 +24,7 @@ function EditExpensePage() {
       try {
         const { data } = await axios.get(
           process.env.REACT_APP_BASE_URL +
-            "pockets/" +
+            "/pockets/" +
             pocketsId +
             "/expenses/" +
             expenseId,
@@ -43,7 +43,10 @@ function EditExpensePage() {
     const fetchProfileNameList = async () => {
       try {
         const { data } = await axios.get(
-          process.env.REACT_APP_BASE_URL + "pockets/" + pocketsId + "/profiles",
+          process.env.REACT_APP_BASE_URL +
+            "/pockets/" +
+            pocketsId +
+            "/profiles",
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -78,7 +81,7 @@ function EditExpensePage() {
       try {
         const { data } = await axios.get(
           process.env.REACT_APP_BASE_URL +
-            "pockets/" +
+            "/pockets/" +
             pocketsId +
             "/expensesprofiles",
           {
@@ -97,7 +100,7 @@ function EditExpensePage() {
       try {
         const { data } = await axios.get(
           process.env.REACT_APP_BASE_URL +
-            "pockets/" +
+            "/pockets/" +
             pocketsId +
             "/expensesprofiles/" +
             expenseId,
